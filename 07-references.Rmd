@@ -3,6 +3,11 @@
 '`
 # useful code
 
+
+
+this is how you commit and push stuff in terminal
 git add .
 
 git commit -m "commit message"
+
+git push
