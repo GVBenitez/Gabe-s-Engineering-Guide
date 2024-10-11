@@ -1,6 +1,6 @@
 --- 
-title: "A Minimal Book Example"
-author: "John Doe"
+title: "Willow National Petroleum Reserve-Alaska<br>(AK760) Soil and Vegetation Survey"
+author: "Gabriel Benitez"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
@@ -15,27 +15,20 @@ link-citations: yes
 github-repo: rstudio/bookdown-demo
 ---
 
-# About
+# Soil and Vegetation Survey of the <br> National Petroleum Reserve-Alaska
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports; for example, a math equation $a^2 + b^2 = c^2$.
+## Acknowledgements
+
+This project would have never been possible without the expertise of the scientist, pilots, and the managers of this incredible area. Countless thanks to Tyler Annetts, Jessica Lene-Ashley, Phillip Barber, Luke Breneman, Krista Bryant, Brad Casar, Charolette Crowder, Sara Datson, Noah Hull, Ted Inman, Nic Jelinski, Jamin Johanson, Monica Kopp, Amy Li, Travis Nauman, Nathan Perry, Craig Prink, Nathan Roe, Stephanie Schmidt, Michael Sousa, Michael Singer, Mark Stott, Maddie Tucker.
 
 ## Usage 
 
-Each **bookdown** chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter *must* start with a first-level heading: `# A good chapter`, and can contain one (and only one) first-level heading.
+This survey was a cooperative effort of the United States Department of Agriculture, Natural Resources Conservation Service (NRCS) and the United States Department of Interior, Bureau of Land Management (BLM). NRCS was responsible for survey design and methodology, data collection and analysis, and this report. Fieldwork was completed in July and August of ’21, ’23, and ‘24. Soil names and descriptions were approved in 2024. Unless indicated otherwise, maps and supporting documentation in this report refer to conditions in the survey area in 2024.
 
-Use second-level and higher headings within chapters like: `## A short section` or `### An even shorter section`.
+Maps in this report may be copied without permission. However, enlargement of these maps could cause misunderstanding of the detail of mapping. If enlarged, maps do not show the small areas of contrasting soils and vegetation that could gave been shown at a larger scale.
 
-The `index.Rmd` file is required, and is also your first book chapter. It will be the homepage when you render the book.
+All programs and services of the Natural Resources Conservation Service and the Bureau of Land Management are offered on a nondiscriminatory basis, without regard to race, color, national origin, gender, religion, age, disability, political beliefs, sexual orientation, marital or family status.
 
-## Render book
-
-You can render the HTML version of this example book without changing anything:
-
-1. Find the **Build** pane in the RStudio IDE, and
-
-1. Click on **Build Book**, then select your output format, or select "All formats" if you'd like to use multiple formats from the same book source files.
-
-Or build the book from the R console:
 
 ```{r, eval=FALSE}
 bookdown::render_book()

@@ -1,11 +1,7 @@
-# Hello bookdown 
+# Introduction 
 
-All chapters start with a first-level heading followed by your chapter title, like the line above. There should be only one first-level heading (`#`) per .Rmd file.
+The Willow area of the National Petroleum Reserve-Alaska (NPR-A) is in the Arctic Coastal Plain of the North Slope of Alaska, approximately 90 miles (145 km) west of Deadhorse. These lands were originally inhabited by various Alaska Native groups, including the Iñupiat people for thousands of years. In 1923, President Warren G. Harding established the Naval Petroleum Reserve No.4 (NPR-4) through an executive order, which brought this area under federal ownership without consultation or compensation to the Alaska Native peoples. In 1976, the Naval Petroleum Reserves Production Act renamed the area to the National Petroleum Reserve-Alaska and transferred the management of the reserve from the United States Navy to the United States Department of Interior, Bureau of Land Management. In recent years, there has been increased interest in developing the oil resources in the NPR-A, exemplified by projects such as the Willow Project. The NPR-A is approximately 24 million acres stretching across the North Slope of Alaska. The soil and vegetation survey area of the Willow area is approximately 500,000 acres on the Eastern most side of the NPR-A. 
 
-## A section
+## Survey Purpose
 
-All chapter sections start with a second-level (`##`) or higher heading followed by your section title, like the sections above and below here. You can have as many as you want within a chapter.
-
-### An unnumbered section {-}
-
-Chapters and sections are numbered by default. To un-number a heading, add a `{.unnumbered}` or the shorter `{-}` at the end of the heading, like in this section.
+The primary purpose of the survey was to describe and map the soils and vegetation of the Willow area in the NPR-A. Area soils and vegetation were mapped at a scale of 1:24,000 and detailed description of the map units, soil types, and vegetation cover types were developed.
