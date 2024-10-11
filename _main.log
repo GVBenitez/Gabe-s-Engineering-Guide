@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.9)  11 OCT 2024 12:52
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.9)  11 OCT 2024 13:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -738,6 +738,8 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 
 [4]
 Chapter 1.
+File: _book/IMG_1982.JPG Graphic file (type bmp)
+<_book/IMG_1982.JPG>
 
 
 [5
@@ -764,15 +766,15 @@ Chapter 3.
 
 
 [9]
-Overfull \hbox (17.937pt too wide) in paragraph at lines 206--207
+Overfull \hbox (17.937pt too wide) in paragraph at lines 212--213
 []\TU/lmr/m/n/10 To label an un-numbered heading, use: \TU/lmtt/m/n/10 # Hello world {-#nice-label}
  []
 
 
-LaTeX Warning: Reference `cross' on page 10 undefined on input line 209.
+LaTeX Warning: Reference `cross' on page 10 undefined on input line 215.
 
 
-Underfull \hbox (badness 2512) in paragraph at lines 209--210
+Underfull \hbox (badness 2512) in paragraph at lines 215--216
 []\TU/lmr/m/n/10 Next, reference the labeled heading anywhere in the text using
  []
 
@@ -787,7 +789,7 @@ File: _main_files/figure-latex/nice-fig-1.pdf Graphic file (type pdf)
 [12]
 Chapter 4.
 
-Underfull \hbox (badness 1859) in paragraph at lines 284--285
+Underfull \hbox (badness 1859) in paragraph at lines 290--291
 []\TU/lmr/m/n/10 Add an unnumbered part: \TU/lmtt/m/n/10 # (PART\*) Act one {-} \TU/lmr/m/n/10 (followed by \TU/lmtt/m/n/10 # A
  []
 
@@ -835,10 +837,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 17663 strings out of 476233
- 324402 string characters out of 5785007
+ 17674 strings out of 476233
+ 324616 string characters out of 5785007
  854418 words of memory out of 5000000
- 39987 multiletter control sequences out of 15000+600000
+ 39995 multiletter control sequences out of 15000+600000
  564552 words of font info for 93 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  90i,8n,123p,1184b,472s stack positions out of 10000i,1000n,20000p,200000b,200000s

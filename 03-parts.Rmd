@@ -3,8 +3,9 @@
 For this project getting to the site with enough gear to be self-sustainable was a logistical challenge. Thankfully the BLM has a remote field station, Inigok. Inigok is a 
 
 ```{r, echo=FALSE}
-knitr::include_url("https://youtu.be/zOveYh5ZA4A")
+knitr::include_url("https://www.youtube.com/embed/zOveYh5ZA4A?si=ENj1NCSPHqpOIm5u")
 ```
+
 
 You can add parts to organize one or more book chapters together. Parts can be inserted at the top of an .Rmd file, before the first-level chapter heading in that same file. 
 
