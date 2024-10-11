@@ -8,8 +8,10 @@ introduction
 survey-purpose
 general-nature-of-the-area
 climate
+insert-30-year-normal-temperture-plot-and-or-potentially-an-interactive-plot-that-shows-every-year-with-the-30-year-normal-on-top
+insert-30-year-normal-precipitation-plot
 captioned-figures-and-tables
-parts
+field-work
 footnotes-and-citations
 footnotes
 citations
