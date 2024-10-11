@@ -1,5 +1,5 @@
 --- 
-title: "Willow National Petroleum Reserve-Alaska<br>(AK760) Soil and Vegetation Survey"
+title: "Soil and Vegetation Survey of the Willow National Petroleum Reserve-Alaska"
 author: "Gabriel Benitez"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -28,26 +28,3 @@ This survey was a cooperative effort of the United States Department of Agricult
 Maps in this report may be copied without permission. However, enlargement of these maps could cause misunderstanding of the detail of mapping. If enlarged, maps do not show the small areas of contrasting soils and vegetation that could gave been shown at a larger scale.
 
 All programs and services of the Natural Resources Conservation Service and the Bureau of Land Management are offered on a nondiscriminatory basis, without regard to race, color, national origin, gender, religion, age, disability, political beliefs, sexual orientation, marital or family status.
-
-
-```{r, eval=FALSE}
-bookdown::render_book()
-```
-
-To render this example to PDF as a `bookdown::pdf_book`, you'll need to install XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.org/tinytex/>.
-
-## Preview book
-
-As you work, you may start a local server to live preview this HTML book. This preview will update as you edit the book when you save individual .Rmd files. You can start the server in a work session by using the RStudio add-in "Preview book", or from the R console:
-
-```{r eval=FALSE}
-bookdown::serve_book()
-```
-
-
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-```
