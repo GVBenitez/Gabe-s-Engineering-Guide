@@ -1,0 +1,104 @@
+library(readr)
+library(tidyr)
+library(ggplot2)
+
+# plot of daily average temperature data of the SNOTEL site in deadhorse, AK
+
+df1 <- read_delim("_book/dailyAvgTemp.csv", delim = "|")
+
+data <- df1
+
+data_long <- data %>%
+  pivot_longer(cols = -c(`Water Year`, Day),
+               names_to = "Month",
+               values_to = "Temperature")
+
+# Create a date column (ignoring the year)
+month_order <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+data_long <- data_long %>%
+  mutate(
+    Month = factor(Month, levels = month_order, ordered = TRUE),
+    Date = as.Date(paste("2000", Month, Day, sep = "-"), format = "%Y-%b-%d")
+  )
+
+# Create the line graph
+ggplot(data_long, aes(x = Date, y = Temperature, color = factor(`Water Year`), group = `Water Year`)) +
+  geom_line() +
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+  scale_color_viridis_d() +  # Use a color-blind friendly palette
+  labs(title = "Daily Temperature 2004-2023",
+       x = "Month",
+       y = "Temperature (Fahrenheit)",
+       color = "Year") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom")
+        
+#####################################################################################
+
+data_long <- data_long %>%
+  mutate(
+    Month = factor(Month, levels = month_order, ordered = TRUE),
+    Date = as.Date(paste("2000", Month, Day, sep = "-"), format = "%Y-%b-%d")
+  )
+
+# Calculate the average temperature for each day across all years
+avg_temp <- data_long %>%
+  group_by(Date) %>%
+  summarise(AvgTemperature = mean(Temperature, na.rm = TRUE))
+
+# Create the line graph of average temperature
+ggplot(avg_temp, aes(x = Date, y = AvgTemperature)) +
+  geom_line(color = "blue", size = 1) +
+  geom_smooth(method = "loess", se = FALSE, color = "red", linetype = "dashed") +
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+  labs(title = "Average Daily Temperature 2004-2023",
+       x = "Month",
+       y = "Average Temperature (Farenheit)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  
+ ################################################################
+ 
+data_long <- data %>%
+  pivot_longer(cols = -c(`Water Year`, Day),
+               names_to = "Month",
+               values_to = "Temperature")
+
+# Create a date column (ignoring the year)
+month_order <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+data_long <- data_long %>%
+  mutate(
+    Month = factor(Month, levels = month_order, ordered = TRUE),
+    Date = as.Date(paste("2000", Month, Day, sep = "-"), format = "%Y-%b-%d")
+  )
+
+# Calculate the average temperature for each day across all years
+avg_temp <- data_long %>%
+  group_by(Date) %>%
+  summarise(AvgTemperature = mean(Temperature, na.rm = TRUE))
+
+# Create the combined line graph
+ggplot() +
+  # Individual year lines
+  geom_line(data = data_long, 
+            aes(x = Date, y = Temperature,
+#            color = factor(`Water Year`),
+#            group = `Water Year`
+),
+            alpha = 0.5) +
+  # Average temperature line
+  geom_line(data = avg_temp, 
+            aes(x = Date, y = AvgTemperature),
+            color = "black", size = 1.2) +
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+#  scale_color_viridis_d(option = "plasma") +  # Color-blind friendly palette
+  labs(title = "Daily Temperature 2004-2024",
+       x = "Month",
+       y = "Temperature",
+       color = "Water Year") +
+      theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom")
+        
+        

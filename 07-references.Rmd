@@ -11,3 +11,7 @@ git add .
 git commit -m "commit message"
 
 git push
+
+ctrl + Alt + i = insert r script
+echo = false means the scrubs dont see code
+

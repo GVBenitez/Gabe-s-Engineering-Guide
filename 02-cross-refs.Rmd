@@ -8,6 +8,57 @@ The Arctic Coastal Plain of Alaska is characterized by a harsh tundra climate, c
 
 Despite its frigid nature, the coastal plain receives surprisingly little precipitation, typically ranging from 4-10 inches annually. Most of this falls as snow, blanketing the landscape for much of the year. The average annual snowfall is about 50 to 100 centimeters. The low precipitation, coupled with minimal evaporation rates due to the cold, creates a unique hydrologic balance that doesn't quite fit the traditional definition of a desert.
 
+```{r, echo = FALSE, warning=FALSE, message=FALSE}
+library(tidyr)
+library(ggplot2)
+library(readr)
+library(dplyr)
+
+df1 <- read_delim("_book/dailyAvgTemp.csv", delim = "|")
+
+data <- df1
+
+data_long <- data %>%
+  pivot_longer(cols = -c(`Water Year`, Day),
+               names_to = "Month",
+               values_to = "Temperature")
+
+# Create a date column (ignoring the year)
+month_order <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+data_long <- data_long %>%
+  mutate(
+    Month = factor(Month, levels = month_order, ordered = TRUE),
+    Date = as.Date(paste("2000", Month, Day, sep = "-"), format = "%Y-%b-%d")
+  )
+
+# Calculate the average temperature for each day across all years
+avg_temp <- data_long %>%
+  group_by(Date) %>%
+  summarise(AvgTemperature = mean(Temperature, na.rm = TRUE))
+
+# Create the combined line graph
+ggplot() +
+  # Individual year lines
+  geom_line(data = data_long, 
+            aes(x = Date, y = Temperature, color = factor(`Water Year`), group = `Water Year`),
+            alpha = 0.5) +
+  # Average temperature line
+  geom_line(data = avg_temp, 
+            aes(x = Date, y = AvgTemperature),
+            color = "black", size = 1.2) +
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+  scale_color_viridis_d(option = "plasma") +  # Color-blind friendly palette
+  labs(title = "Daily Temperature 2003-2024",
+       x = "Month",
+       y = "Temperature",
+       color = "Water Year") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom")
+
+```
+
+
 ## Insert 30 year normal precipitation plot 
 
 One of the most striking features of this climate is the dramatic swing in daylight hours throughout the year. Summers bring the phenomenon of the midnight sun, with 24 hours of continuous daylight, while winters plunge the region into weeks of polar night. This extreme light regime profoundly impacts biological rhythms and human activities alike. The coastal plain is also known for its windy conditions, with strong easterly winds being common. These winds, combined with the already frigid temperatures, can create dangerously low wind chill factors.

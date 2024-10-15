@@ -23,3 +23,6 @@ sharing-your-book
 publishing
 pages
 metadata-for-sharing
+url-your-book-url-like-httpsbookdown.orgyihuibookdown
+useful-code
+plot-of-daily-average-temperature-data-of-the-snotel-site-in-deadhorse-ak
