@@ -8,7 +8,6 @@ introduction
 survey-purpose
 general-nature-of-the-area
 climate
-insert-30-year-normal-temperture-plot-and-or-potentially-an-interactive-plot-that-shows-every-year-with-the-30-year-normal-on-top
 insert-30-year-normal-precipitation-plot
 captioned-figures-and-tables
 field-work
@@ -23,9 +22,10 @@ sharing-your-book
 publishing
 pages
 metadata-for-sharing
-url-your-book-url-like-httpsbookdown.orgyihuibookdown
 useful-code
-plot-of-daily-average-temperature-data-of-the-snotel-site-in-deadhorse-ak
-create-a-date-column-ignoring-the-year
 calculate-the-average-temperature-for-each-day-across-all-years
 create-the-combined-line-graph
+calculate-the-average-temperature-for-each-day-across-all-years-1
+create-the-combined-line-graph-1
+url-your-book-url-like-httpsbookdown.orgyihuibookdown
+create-a-function-to-reorder-months-from-oct-to-sep

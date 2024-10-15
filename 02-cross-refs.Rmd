@@ -54,10 +54,67 @@ ggplot() +
 
 Despite its frigid nature, the coastal plain receives surprisingly little precipitation, typically ranging from 4-10 inches annually. Most of this falls as snow, blanketing the landscape for much of the year. The average annual snowfall is about 50 to 100 centimeters. The low precipitation, coupled with minimal evaporation rates due to the cold, creates a unique hydrologic balance that doesn't quite fit the traditional definition of a desert.
 
+```{r, echo = FALSE, warning=FALSE, message=FALSE}
+df1 <- read_delim("_book/dailyPrecip.csv", delim = "|")
 
+data <- df1 %>%
+  rename(Year = "Water Year")
 
+data_long <- data %>%
+  pivot_longer(cols = -c(Year, Day),
+               names_to = "Month",
+               values_to = "Precip")
 
-## Insert 30 year normal precipitation plot 
+data_long <- data_long %>%
+  mutate(
+    MonthNum = match(Month, month.abb),
+    Date = make_date(Year, MonthNum, Day),
+    MonthNum = NULL
+  ) %>%
+  mutate(Date = ymd(Date))
+
+# Create a function to reorder months from Oct to Sep
+reorder_month <- function(x) {
+  factor(x, levels = c("Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"))
+}
+
+# Prepare the data for plotting
+data_plot <- data_long %>%
+  mutate(
+    WaterYear = ifelse(month(Date) >= 10, Year, Year - 1),
+    Month = reorder_month(Month)
+  ) %>%
+  filter(Day == days_in_month(Date)) %>%
+  arrange(WaterYear, Month)
+
+# Calculate average cumulative precipitation
+avg_precip <- data_plot %>%
+  group_by(Month) %>%
+  summarize(AvgPrecip = mean(Precip, na.rm = TRUE))
+
+# Create the plot
+ggplot() +
+  geom_line(data = data_plot, aes(x = Month, y = Precip, group = WaterYear), 
+            size = 1, color = "grey80") +
+  geom_line(data = avg_precip, aes(x = Month, y = AvgPrecip, group = 1), 
+            size = 1.5, color = "black") +
+  geom_point(data = avg_precip, aes(x = Month, y = AvgPrecip), 
+             size = 1, color = "black") +
+  scale_x_discrete(limits = levels(reorder_month(avg_precip$Month))) +
+  labs(
+    title = "Average Cumulative Precipitation 2004-2024",
+    x = "Month",
+    y = "Cumulative Precipitation (Inches)"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.minor = element_blank()
+  )
+
+```
+
 
 One of the most striking features of this climate is the dramatic swing in daylight hours throughout the year. Summers bring the phenomenon of the midnight sun, with 24 hours of continuous daylight, while winters plunge the region into weeks of polar night. This extreme light regime profoundly impacts biological rhythms and human activities alike. The coastal plain is also known for its windy conditions, with strong easterly winds being common. These winds, combined with the already frigid temperatures, can create dangerously low wind chill factors.
 

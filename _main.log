@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.9)  11 OCT 2024 13:34
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.9)  15 OCT 2024 12:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -752,29 +752,45 @@ Overfull \hbox (147.38123pt too wide) has occurred while \output is active
  []
 
 [6]
-Chapter 2.
+
+[7]
 
 
-[7
-
-]
+Overfull \hbox (147.38123pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 8 \TU/lmr/m/sl/10 CHAPTER 1.  SOIL AND VEGETATION SURVEY OF THE NATIONAL PETROLEUM RESERVE-ALASKA
+ []
 
 [8
 
 ]
-Chapter 3.
+Chapter 2.
 
 
 [9]
-Overfull \hbox (17.937pt too wide) in paragraph at lines 212--213
+
+[10
+
+]
+Chapter 3.
+File: _main_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/unnamed-chunk-2-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[11]
+
+[12]
+Overfull \hbox (17.937pt too wide) in paragraph at lines 228--229
 []\TU/lmr/m/n/10 To label an un-numbered heading, use: \TU/lmtt/m/n/10 # Hello world {-#nice-label}
  []
 
 
-LaTeX Warning: Reference `cross' on page 10 undefined on input line 215.
+LaTeX Warning: Reference `cross' on page 13 undefined on input line 231.
 
 
-Underfull \hbox (badness 2512) in paragraph at lines 215--216
+Underfull \hbox (badness 2512) in paragraph at lines 231--232
 []\TU/lmr/m/n/10 Next, reference the labeled heading anywhere in the text using
  []
 
@@ -782,35 +798,25 @@ File: _main_files/figure-latex/nice-fig-1.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/nice-fig-1.pdf>
 
 
-[10]
+[13]
 
-[11]
-
-[12]
+[14]
 Chapter 4.
 
-Underfull \hbox (badness 1859) in paragraph at lines 290--291
+Underfull \hbox (badness 1859) in paragraph at lines 306--307
 []\TU/lmr/m/n/10 Add an unnumbered part: \TU/lmtt/m/n/10 # (PART\*) Act one {-} \TU/lmr/m/n/10 (followed by \TU/lmtt/m/n/10 # A
  []
 
 
 
-[13
+[15
 
 ]
-
-[14
-
-]
-Chapter 5.
-
-
-[15]
 
 [16
 
 ]
-Chapter 6.
+Chapter 5.
 
 
 [17]
@@ -818,16 +824,84 @@ Chapter 6.
 [18
 
 ]
+Chapter 6.
+
+
+[19]
+
+[20
+
+]
 Chapter 7.
 
 
-[19] (./_main.bbl
+[21]
 
-[20])
+[22]
+Chapter 8.
 
-[21
+Underfull \hbox (badness 1565) in paragraph at lines 424--430
+[]\TU/lmr/m/n/10 month_order <- c(“Jan”, “Feb”, “Mar”, “Apr”, “May”, “Jun”, “Jul”,
+ []
 
-] (./_main.aux)
+
+
+[23
+
+]
+
+[24
+
+]
+Chapter 9.
+
+Overfull \hbox (13.14003pt too wide) in paragraph at lines 434--437
+\TU/lmr/m/n/10 avg_temp <- data_long %>% group_by(Date) %>% summarise(AvgTemperature
+ []
+
+
+
+[25]
+
+
+Overfull \hbox (132.35013pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 26 \TU/lmr/m/sl/10 CHAPTER 9.  CALCULATE THE AVERAGE TEMPERATURE FOR EACH DAY ACROSS ALL YEARS
+ []
+
+[26
+
+]
+Chapter 10.
+
+
+[27]
+
+[28
+
+]
+Chapter 11.
+
+
+[29]
+
+
+Overfull \hbox (137.35013pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 30 \TU/lmr/m/sl/10 CHAPTER 11.  CALCULATE THE AVERAGE TEMPERATURE FOR EACH DAY ACROSS ALL YEARS
+ []
+
+[30
+
+]
+Chapter 12.
+(./_main.bbl
+
+[31]
+
+[32
+
+])
+
+[33] (./_main.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-09-10>
@@ -837,12 +911,12 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 17674 strings out of 476233
- 324616 string characters out of 5785007
- 854418 words of memory out of 5000000
- 39995 multiletter control sequences out of 15000+600000
+ 17693 strings out of 476233
+ 325233 string characters out of 5785007
+ 853588 words of memory out of 5000000
+ 40013 multiletter control sequences out of 15000+600000
  564552 words of font info for 93 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 90i,8n,123p,1184b,472s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,8n,123p,1184b,468s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on _main.pdf (21 pages).
+Output written on _main.pdf (33 pages).

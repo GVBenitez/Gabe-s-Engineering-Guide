@@ -1,4 +1,3 @@
-```{r}
 
 library(tidyr)
 library(ggplot2)
@@ -9,9 +8,7 @@ library(lubridate)
 
 df1 <- read_delim("_book/dailyPrecip.csv", delim = "|")
 
-data <- df1
-
-data <- data %>%
+data <- df1 %>%
   rename(Year = "Water Year")
 
 data_long <- data %>%
@@ -19,38 +16,52 @@ data_long <- data %>%
                names_to = "Month",
                values_to = "Precip")
 
-month_order <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
-
 data_long <- data_long %>%
   mutate(
-    Month = factor(Month, levels = month_order, ordered = TRUE),
-    Date = as.Date(paste("2000", Month, Day, sep = "-"), format = "%Y-%b-%d")
+    MonthNum = match(Month, month.abb),
+    Date = make_date(Year, MonthNum, Day),
+    MonthNum = NULL
+  ) %>%
+  mutate(Date = ymd(Date))
+
+# Create a function to reorder months from Oct to Sep
+reorder_month <- function(x) {
+  factor(x, levels = c("Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"))
+}
+
+# Prepare the data for plotting
+data_plot <- data_long %>%
+  mutate(
+    WaterYear = ifelse(month(Date) >= 10, Year, Year - 1),
+    Month = reorder_month(Month)
+  ) %>%
+  filter(Day == days_in_month(Date)) %>%
+  arrange(WaterYear, Month)
+
+# Calculate average cumulative precipitation
+avg_precip <- data_plot %>%
+  group_by(Month) %>%
+  summarize(AvgPrecip = mean(Precip, na.rm = TRUE))
+
+# Create the plot
+ggplot() +
+  geom_line(data = data_plot, aes(x = Month, y = Precip, group = WaterYear), 
+            size = 1, color = "grey80") +
+  geom_line(data = avg_precip, aes(x = Month, y = AvgPrecip, group = 1), 
+            size = 1.5, color = "black") +
+  geom_point(data = avg_precip, aes(x = Month, y = AvgPrecip), 
+             size = 1, color = "black") +
+  scale_x_discrete(limits = levels(reorder_month(avg_precip$Month))) +
+  labs(
+    title = "Average Cumulative Precipitation by Month",
+    x = "Month",
+    y = "Cumulative Precipitation (Inches)"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.minor = element_blank()
   )
 
-ggplot(data_long, aes(x = Date, y = Precip)) +
-  geom_line()
 
-
-# Calculate the average temperature for each day across all years
-avg_precip <- data_long %>%
-  group_by(Date) %>%
-  summarise(Avgprecip = mean(Precip, na.rm = TRUE))
-
-# Create the combined line graph
-ggplot() +
-  # Individual year lines
-  geom_line(data = data_long, 
-            aes(x = Date, y = Precip), 
-            alpha = 0.5) +
-  # Average temperature line
-  geom_line(data = avg_precip, 
-            aes(x = Date, y = Avgprecip),
-            color = "black", size = 1.2) +
-  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
-  scale_color_viridis_d(option = "plasma") +  # Color-blind friendly palette
-  labs(title = "Average Daily Precipitation 2004-2024",
-       x = "Month",
-       y = "Precipitation (Inches)")
-       color = "Water Year"
-
-```

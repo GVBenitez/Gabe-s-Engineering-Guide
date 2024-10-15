@@ -117,7 +117,7 @@
 
 \title{Soil and Vegetation Survey of the Willow National Petroleum Reserve-Alaska}
 \author{Gabriel Benitez}
-\date{2024-10-11}
+\date{2024-10-15}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -149,7 +149,7 @@
 \begin{figure}
 \centering
 \includegraphics{_book/IMG_1982.JPG}
-\caption{Just look at it}
+\caption{Fish Creek taken from R44 helicopter. Notice the progression of ice-wedge polygon development on the floodplains to uplands.}
 \end{figure}
 
 \hypertarget{acknowledgements}{%
@@ -165,6 +165,23 @@ This survey was a cooperative effort of the United States Department of Agricult
 Maps in this report may be copied without permission. However, enlargement of these maps could cause misunderstanding of the detail of mapping. If enlarged, maps do not show the small areas of contrasting soils and vegetation that could gave been shown at a larger scale.
 
 All programs and services of the Natural Resources Conservation Service and the Bureau of Land Management are offered on a nondiscriminatory basis, without regard to race, color, national origin, gender, religion, age, disability, political beliefs, sexual orientation, marital or family status.
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
 
 \hypertarget{introduction}{%
 \chapter{Introduction}\label{introduction}}
@@ -184,8 +201,7 @@ The primary purpose of the survey was to describe and map the soils and vegetati
 
 The Arctic Coastal Plain of Alaska is characterized by a harsh tundra climate, classified as ET in the Köppen system. This region experiences extreme temperature variations, with brutally cold winters where average temperatures often plummet below -22°F, and brief, cool summers barely reaching 37-54°F in July. The average annual temperature ranges from 8 to 14°F. The average freeze-free period is fewer than 5 days to 20 days. Freezing temperatures can occur in any month.
 
-\hypertarget{insert-30-year-normal-temperture-plot-and-or-potentially-an-interactive-plot-that-shows-every-year-with-the-30-year-normal-on-top}{%
-\section{Insert 30 year normal temperture plot and or potentially an interactive plot that shows every year with the 30 year normal on top}\label{insert-30-year-normal-temperture-plot-and-or-potentially-an-interactive-plot-that-shows-every-year-with-the-30-year-normal-on-top}}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-2-1.pdf}
 
 Despite its frigid nature, the coastal plain receives surprisingly little precipitation, typically ranging from 4-10 inches annually. Most of this falls as snow, blanketing the landscape for much of the year. The average annual snowfall is about 50 to 100 centimeters. The low precipitation, coupled with minimal evaporation rates due to the cold, creates a unique hydrologic balance that doesn't quite fit the traditional definition of a desert.
 
@@ -376,6 +392,120 @@ Or use:
 \end{Highlighting}
 \end{Shaded}
 
+\hypertarget{useful-code}{%
+\chapter{useful code}\label{useful-code}}
+
+this is how you commit and push stuff in terminal
+git add .
+
+git commit -m ``commit message''
+
+git push
+
+ctrl + Alt + i = insert r script
+echo = false means the scrubs dont see code
+
+library(tidyr)
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(tidyverse)
+library(lubridate)
+
+df1 \textless- read\_delim(``\_book/dailyMinTemp.csv'', delim = ``\textbar{}'')
+
+data \textless- df1
+
+data\_long \textless- data \%\textgreater\%
+pivot\_longer(cols = -c(\texttt{Water\ Year}, Day),
+names\_to = ``Month'',
+values\_to = ``Temperature'')
+
+month\_order \textless- c(``Jan'', ``Feb'', ``Mar'', ``Apr'', ``May'', ``Jun'', ``Jul'', ``Aug'', ``Sep'', ``Oct'', ``Nov'', ``Dec'')
+data\_long \textless- data\_long \%\textgreater\%
+mutate(
+Month = factor(Month, levels = month\_order, ordered = TRUE),
+Date = as.Date(paste(``2000'', Month, Day, sep = ``-''), format = ``\%Y-\%b-\%d'')
+)
+
+\hypertarget{calculate-the-average-temperature-for-each-day-across-all-years}{%
+\chapter{Calculate the average temperature for each day across all years}\label{calculate-the-average-temperature-for-each-day-across-all-years}}
+
+avg\_temp \textless- data\_long \%\textgreater\%
+group\_by(Date) \%\textgreater\%
+summarise(AvgTemperature = mean(Temperature, na.rm = TRUE))
+
+\hypertarget{create-the-combined-line-graph}{%
+\chapter{Create the combined line graph}\label{create-the-combined-line-graph}}
+
+ggplot() +
+\# Individual year lines
+geom\_line(data = data\_long,
+aes(x = Date, y = Temperature),
+alpha = 0.5) +
+\# Average temperature line
+geom\_line(data = avg\_temp,
+aes(x = Date, y = AvgTemperature),
+color = ``black'', size = 1.2) +
+scale\_x\_date(date\_labels = ``\%b'', date\_breaks = ``1 month'') +
+scale\_color\_viridis\_d(option = ``plasma'') + \# Color-blind friendly palette
+labs(title = ``Minimum Daily Temperature 2004-2024'',
+x = ``Month'',
+y = ``Temperature (Fahrenheit)'')
+color = ``Water Year''
+
+library(tidyr)
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(tidyverse)
+library(lubridate)
+
+df1 \textless- read\_delim(``\_book/dailyPrecip.csv'', delim = ``\textbar{}'')
+
+data \textless- df1
+
+data \textless- data \%\textgreater\%
+rename(Year = ``Water Year'')
+
+data\_long \textless- data \%\textgreater\%
+pivot\_longer(cols = -c(Year, Day),
+names\_to = ``Month'',
+values\_to = ``Precip'')
+
+month\_order \textless- c( ``Oct'', ``Nov'', ``Dec'', ``Jan'', ``Feb'', ``Mar'', ``Apr'', ``May'', ``Jun'', ``Jul'', ``Aug'', ``Sep'')
+
+data\_long \textless- data\_long \%\textgreater\%
+mutate(
+Month = factor(Month),
+Date = as.Date(paste(``2000'', Month, Day, sep = ``-''), format = ``\%Y-\%b-\%d'')
+)
+
+\hypertarget{calculate-the-average-temperature-for-each-day-across-all-years-1}{%
+\chapter{Calculate the average temperature for each day across all years}\label{calculate-the-average-temperature-for-each-day-across-all-years-1}}
+
+avg\_precip \textless- data\_long \%\textgreater\%
+group\_by(Date) \%\textgreater\%
+summarise(Avgprecip = mean(Precip, na.rm = TRUE))
+
+\hypertarget{create-the-combined-line-graph-1}{%
+\chapter{Create the combined line graph}\label{create-the-combined-line-graph-1}}
+
+ggplot() +
+\# Individual year lines
+geom\_line(data = data\_long,
+aes(x = Date, y = Precip),
+alpha = 0.5) +
+\# Average temperature line
+geom\_line(data = avg\_precip,
+aes(x = Date, y = Avgprecip),
+color = ``black'', size = 1.2) +
+scale\_x\_date(date\_labels = ``\%b'', date\_breaks = ``1 month'') +
+scale\_color\_viridis\_d(option = ``plasma'') + \# Color-blind friendly palette
+labs(title = ``Average Daily Precipitation 2004-2024'',
+x = ``Month'',
+y = ``Precipitation (Inches)'')
+color = ``Water Year''
 
   \bibliography{book.bib,packages.bib}
 
