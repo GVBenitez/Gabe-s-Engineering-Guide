@@ -205,8 +205,7 @@ The Arctic Coastal Plain of Alaska is characterized by a harsh tundra climate, c
 
 Despite its frigid nature, the coastal plain receives surprisingly little precipitation, typically ranging from 4-10 inches annually. Most of this falls as snow, blanketing the landscape for much of the year. The average annual snowfall is about 50 to 100 centimeters. The low precipitation, coupled with minimal evaporation rates due to the cold, creates a unique hydrologic balance that doesn't quite fit the traditional definition of a desert.
 
-\hypertarget{insert-30-year-normal-precipitation-plot}{%
-\section{Insert 30 year normal precipitation plot}\label{insert-30-year-normal-precipitation-plot}}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-3-1.pdf}
 
 One of the most striking features of this climate is the dramatic swing in daylight hours throughout the year. Summers bring the phenomenon of the midnight sun, with 24 hours of continuous daylight, while winters plunge the region into weeks of polar night. This extreme light regime profoundly impacts biological rhythms and human activities alike. The coastal plain is also known for its windy conditions, with strong easterly winds being common. These winds, combined with the already frigid temperatures, can create dangerously low wind chill factors.
 
@@ -463,9 +462,7 @@ library(lubridate)
 
 df1 \textless- read\_delim(``\_book/dailyPrecip.csv'', delim = ``\textbar{}'')
 
-data \textless- df1
-
-data \textless- data \%\textgreater\%
+data \textless- df1 \%\textgreater\%
 rename(Year = ``Water Year'')
 
 data\_long \textless- data \%\textgreater\%
@@ -473,39 +470,61 @@ pivot\_longer(cols = -c(Year, Day),
 names\_to = ``Month'',
 values\_to = ``Precip'')
 
-month\_order \textless- c( ``Oct'', ``Nov'', ``Dec'', ``Jan'', ``Feb'', ``Mar'', ``Apr'', ``May'', ``Jun'', ``Jul'', ``Aug'', ``Sep'')
-
 data\_long \textless- data\_long \%\textgreater\%
 mutate(
-Month = factor(Month),
-Date = as.Date(paste(``2000'', Month, Day, sep = ``-''), format = ``\%Y-\%b-\%d'')
-)
+MonthNum = match(Month, month.abb),
+Date = make\_date(Year, MonthNum, Day),
+MonthNum = NULL
+) \%\textgreater\%
+mutate(Date = ymd(Date))
 
-\hypertarget{calculate-the-average-temperature-for-each-day-across-all-years-1}{%
-\chapter{Calculate the average temperature for each day across all years}\label{calculate-the-average-temperature-for-each-day-across-all-years-1}}
+\hypertarget{create-a-function-to-reorder-months-from-oct-to-sep}{%
+\chapter{Create a function to reorder months from Oct to Sep}\label{create-a-function-to-reorder-months-from-oct-to-sep}}
 
-avg\_precip \textless- data\_long \%\textgreater\%
-group\_by(Date) \%\textgreater\%
-summarise(Avgprecip = mean(Precip, na.rm = TRUE))
+reorder\_month \textless- function(x) \{
+factor(x, levels = c(``Oct'', ``Nov'', ``Dec'', ``Jan'', ``Feb'', ``Mar'', ``Apr'', ``May'', ``Jun'', ``Jul'', ``Aug'', ``Sep''))
+\}
 
-\hypertarget{create-the-combined-line-graph-1}{%
-\chapter{Create the combined line graph}\label{create-the-combined-line-graph-1}}
+\hypertarget{prepare-the-data-for-plotting}{%
+\chapter{Prepare the data for plotting}\label{prepare-the-data-for-plotting}}
+
+data\_plot \textless- data\_long \%\textgreater\%
+mutate(
+WaterYear = ifelse(month(Date) \textgreater= 10, Year, Year - 1),
+Month = reorder\_month(Month)
+) \%\textgreater\%
+filter(Day == days\_in\_month(Date)) \%\textgreater\%
+arrange(WaterYear, Month)
+
+\hypertarget{calculate-average-cumulative-precipitation}{%
+\chapter{Calculate average cumulative precipitation}\label{calculate-average-cumulative-precipitation}}
+
+avg\_precip \textless- data\_plot \%\textgreater\%
+group\_by(Month) \%\textgreater\%
+summarize(AvgPrecip = mean(Precip, na.rm = TRUE))
+
+\hypertarget{create-the-plot}{%
+\chapter{Create the plot}\label{create-the-plot}}
 
 ggplot() +
-\# Individual year lines
-geom\_line(data = data\_long,
-aes(x = Date, y = Precip),
-alpha = 0.5) +
-\# Average temperature line
-geom\_line(data = avg\_precip,
-aes(x = Date, y = Avgprecip),
-color = ``black'', size = 1.2) +
-scale\_x\_date(date\_labels = ``\%b'', date\_breaks = ``1 month'') +
-scale\_color\_viridis\_d(option = ``plasma'') + \# Color-blind friendly palette
-labs(title = ``Average Daily Precipitation 2004-2024'',
+geom\_line(data = data\_plot, aes(x = Month, y = Precip, group = WaterYear),
+size = 1, color = ``grey80'') +
+geom\_line(data = avg\_precip, aes(x = Month, y = AvgPrecip, group = 1),
+size = 1.5, color = ``black'') +
+geom\_point(data = avg\_precip, aes(x = Month, y = AvgPrecip),
+size = 1, color = ``black'') +
+scale\_x\_discrete(limits = levels(reorder\_month(avg\_precip\$Month))) +
+labs(
+title = ``Average Cumulative Precipitation by Month'',
 x = ``Month'',
-y = ``Precipitation (Inches)'')
-color = ``Water Year''
+y = ``Cumulative Precipitation (Inches)''
+) +
+theme\_minimal() +
+theme(
+legend.position = ``none'',
+axis.text.x = element\_text(angle = 45, hjust = 1),
+panel.grid.minor = element\_blank()
+)
 
   \bibliography{book.bib,packages.bib}
 

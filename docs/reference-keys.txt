@@ -8,7 +8,6 @@ introduction
 survey-purpose
 general-nature-of-the-area
 climate
-insert-30-year-normal-precipitation-plot
 captioned-figures-and-tables
 field-work
 footnotes-and-citations
@@ -25,7 +24,7 @@ metadata-for-sharing
 useful-code
 calculate-the-average-temperature-for-each-day-across-all-years
 create-the-combined-line-graph
-calculate-the-average-temperature-for-each-day-across-all-years-1
-create-the-combined-line-graph-1
-url-your-book-url-like-httpsbookdown.orgyihuibookdown
 create-a-function-to-reorder-months-from-oct-to-sep
+prepare-the-data-for-plotting
+calculate-average-cumulative-precipitation
+create-the-plot
