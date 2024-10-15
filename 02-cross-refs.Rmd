@@ -4,15 +4,13 @@
 
 The Arctic Coastal Plain of Alaska is characterized by a harsh tundra climate, classified as ET in the Köppen system. This region experiences extreme temperature variations, with brutally cold winters where average temperatures often plummet below -22°F, and brief, cool summers barely reaching 37-54°F in July. The average annual temperature ranges from 8 to 14°F. The average freeze-free period is fewer than 5 days to 20 days. Freezing temperatures can occur in any month.
 
-## Insert 30 year normal temperture plot and or potentially an interactive plot that shows every year with the 30 year normal on top
-
-Despite its frigid nature, the coastal plain receives surprisingly little precipitation, typically ranging from 4-10 inches annually. Most of this falls as snow, blanketing the landscape for much of the year. The average annual snowfall is about 50 to 100 centimeters. The low precipitation, coupled with minimal evaporation rates due to the cold, creates a unique hydrologic balance that doesn't quite fit the traditional definition of a desert.
-
 ```{r, echo = FALSE, warning=FALSE, message=FALSE}
 library(tidyr)
 library(ggplot2)
 library(readr)
 library(dplyr)
+library(tidyverse)
+library(lubridate)
 
 df1 <- read_delim("_book/dailyAvgTemp.csv", delim = "|")
 
@@ -23,7 +21,6 @@ data_long <- data %>%
                names_to = "Month",
                values_to = "Temperature")
 
-# Create a date column (ignoring the year)
 month_order <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 data_long <- data_long %>%
   mutate(
@@ -40,7 +37,7 @@ avg_temp <- data_long %>%
 ggplot() +
   # Individual year lines
   geom_line(data = data_long, 
-            aes(x = Date, y = Temperature, color = factor(`Water Year`), group = `Water Year`),
+            aes(x = Date, y = Temperature), 
             alpha = 0.5) +
   # Average temperature line
   geom_line(data = avg_temp, 
@@ -48,15 +45,16 @@ ggplot() +
             color = "black", size = 1.2) +
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_color_viridis_d(option = "plasma") +  # Color-blind friendly palette
-  labs(title = "Daily Temperature 2003-2024",
+  labs(title = "Average Daily Temperature 2004-2024",
        x = "Month",
-       y = "Temperature",
-       color = "Water Year") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1),
-        legend.position = "bottom")
+       y = "Temperature (Fahrenheit)")
+       color = "Water Year"
 
 ```
+
+Despite its frigid nature, the coastal plain receives surprisingly little precipitation, typically ranging from 4-10 inches annually. Most of this falls as snow, blanketing the landscape for much of the year. The average annual snowfall is about 50 to 100 centimeters. The low precipitation, coupled with minimal evaporation rates due to the cold, creates a unique hydrologic balance that doesn't quite fit the traditional definition of a desert.
+
+
 
 
 ## Insert 30 year normal precipitation plot 

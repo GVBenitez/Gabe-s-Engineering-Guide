@@ -26,3 +26,6 @@ metadata-for-sharing
 url-your-book-url-like-httpsbookdown.orgyihuibookdown
 useful-code
 plot-of-daily-average-temperature-data-of-the-snotel-site-in-deadhorse-ak
+create-a-date-column-ignoring-the-year
+calculate-the-average-temperature-for-each-day-across-all-years
+create-the-combined-line-graph
