@@ -2,7 +2,7 @@
 
 ## Climate
 
-The Arctic Coastal Plain of Alaska is characterized by a harsh tundra climate, classified as ET in the Köppen system. This region experiences extreme temperature variations, with brutally cold winters where average temperatures often plummet below -22°F, and brief, cool summers barely reaching 37-54°F in July. The average annual temperature ranges from 8 to 14°F. The average freeze-free period is fewer than 5 days to 20 days. Freezing temperatures can occur in any month.
+The Arctic Coastal Plain of Alaska is characterized by a harsh tundra climate, classified as ET in the Köppen system. This region experiences extreme temperature variations, with brutally cold winters where average temperatures often plummet below -15°F, and brief, cool summers barely reaching 50°F in July. The average annual temperature ranges from 8 to 14°F. The average freeze-free period is fewer than 5 days to 20 days. Freezing temperatures can occur in any month.
 
 ```{r, echo = FALSE, warning=FALSE, message=FALSE}
 
@@ -63,7 +63,7 @@ p <- ggplot() +
   scale_color_viridis_d(option = "plasma") +  # Color-blind friendly palette
   labs(title = "Average Daily Temperature 2004-2024",
        x = "Month",
-       y = "Temperature (Fahrenheit)",
+       y = "Temperature (°F)",
        color = "Water Year") +
   theme_minimal() +
   theme(legend.position = "right",
@@ -86,7 +86,7 @@ p_interactive
 
 ```
 
-Despite its frigid nature, the coastal plain receives surprisingly little precipitation, typically ranging from 4-10 inches annually. Most of this falls as snow, blanketing the landscape for much of the year. The average annual snowfall is about 50 to 100 centimeters. The low precipitation, coupled with minimal evaporation rates due to the cold, creates a unique hydrologic balance that doesn't quite fit the traditional definition of a desert.
+Despite its frigid nature, the arctic coastal plain receives surprisingly little precipitation, typically ranging from 6-10 inches annually. Most of this falls as snow, blanketing the landscape for much of the year. The average annual snowfall is about 50 to 100 centimeters. The low precipitation, coupled with minimal evaporation rates due to the cold, creates a unique hydrologic balance that doesn't quite fit the traditional definition of a desert.
 
 ```{r, echo = FALSE, warning=FALSE, message=FALSE}
 
