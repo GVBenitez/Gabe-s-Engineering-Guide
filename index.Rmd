@@ -14,8 +14,6 @@ link-citations: yes
 github-repo: rstudio/bookdown-demo
 ---
 
-# Soil and Vegetation Survey of the <br> National Petroleum Reserve-Alaska
-
 ![Fish Creek taken from R44 helicopter. Notice the progression of ice-wedge polygon development from the floodplains to uplands. ](_book/IMG_1982.JPG)
 
 ## Acknowledgements

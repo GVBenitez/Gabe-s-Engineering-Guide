@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.9)  16 OCT 2024 08:47
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.9)  16 OCT 2024 11:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -868,61 +868,100 @@ Overfull \hbox (132.35013pt too wide) has occurred while \output is active
 ]
 Chapter 10.
 
-Underfull \hbox (badness 4108) in paragraph at lines 454--461
-[]\TU/lmr/m/n/10 data_long <- data_long %>% mutate( MonthNum = match(Month,
+Overfull \hbox (90.75pt too wide) in paragraph at lines 457--457
+[]\TU/lmtt/m/n/10 ## -- Column specification --------------------------------------------------------[] 
+ []
+
+
+Overfull \hbox (85.5pt too wide) in paragraph at lines 457--457
+[]\TU/lmtt/m/n/10 ## dbl (14): Water Year, Day, Oct, Nov, Dec, Jan, Feb, Mar, Apr, May, Jun, Jul,...[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 457--457
+[]\TU/lmtt/m/n/10 ## i Use `spec()` to retrieve the full column specification for this data.[] 
+ []
+
+
+Overfull \hbox (96.0pt too wide) in paragraph at lines 457--457
+[]\TU/lmtt/m/n/10 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.[] 
  []
 
 
 
 [27]
+Underfull \vbox (badness 10000) detected at line 514
+ []
 
-[28
+
+Underfull \vbox (badness 10000) detected at line 514
+ []
+
+
+
+[28]
+Overfull \hbox (75.0pt too wide) in paragraph at lines 519--519
+[]\TU/lmtt/m/n/10 ## Warning in geom_line(data = data_long, aes(x = Date, y = Temperature, color =[] 
+ []
+
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 527.
+
+Underfull \hbox (badness 4108) in paragraph at lines 559--566
+[]\TU/lmr/m/n/10 data_long <- data_long %>% mutate( MonthNum = match(Month,
+ []
+
+
+
+[29]
+
+[30
 
 ]
 Chapter 11.
 
 
-[29]
+[31]
 
 
 Overfull \hbox (58.94012pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 30 \TU/lmr/m/sl/10 CHAPTER 11.  CREATE A FUNCTION TO REORDER MONTHS FROM OCT TO SEP
+\TU/lmr/m/n/10 32 \TU/lmr/m/sl/10 CHAPTER 11.  CREATE A FUNCTION TO REORDER MONTHS FROM OCT TO SEP
  []
 
-[30
+[32
 
 ]
 Chapter 12.
 
 
-[31]
+[33]
 
-[32
+[34
 
 ]
 Chapter 13.
 
 
-[33]
+[35]
 
 
 Overfull \hbox (6.79672pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 34 \TU/lmr/m/sl/10 CHAPTER 13.  CALCULATE AVERAGE CUMULATIVE PRECIPITATION
+\TU/lmr/m/n/10 36 \TU/lmr/m/sl/10 CHAPTER 13.  CALCULATE AVERAGE CUMULATIVE PRECIPITATION
  []
 
-[34
+[36
 
 ]
 Chapter 14.
 (./_main.bbl
 
-[35]
+[37]
 
-[36
+[38
 
 ])
 
-[37] (./_main.aux)
+[39] (./_main.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-09-10>
@@ -932,12 +971,12 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 17684 strings out of 476233
- 324728 string characters out of 5785007
- 853616 words of memory out of 5000000
- 40005 multiletter control sequences out of 15000+600000
- 564552 words of font info for 93 fonts, out of 8000000 for 9000
+ 17693 strings out of 476233
+ 324904 string characters out of 5785007
+ 857616 words of memory out of 5000000
+ 40010 multiletter control sequences out of 15000+600000
+ 564568 words of font info for 95 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  90i,8n,123p,1184b,468s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on _main.pdf (37 pages).
+Output written on _main.pdf (39 pages).

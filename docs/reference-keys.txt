@@ -1,4 +1,7 @@
-url-your-book-url-like-httpsbookdown.orgyihuibookdown
+fig:nice-fig
+tab:nice-tab
+eq:binom
+soil-and-vegetation-survey-of-the-national-petroleum-reserve-alaska
 acknowledgements
 usage
 introduction
@@ -20,11 +23,8 @@ pages
 metadata-for-sharing
 useful-code
 calculate-the-average-temperature-for-each-day-across-all-years
-calculate-the-average-temperature-for-each-day-of-the-year
 create-the-combined-line-graph
-convert-to-interactive-plotly-object-with-custom-hover
-modify-hover-template-and-mode
-display-the-plot
 create-a-function-to-reorder-months-from-oct-to-sep
-fig:nice-fig
-tab:nice-tab
+prepare-the-data-for-plotting
+calculate-average-cumulative-precipitation
+create-the-plot

@@ -182,9 +182,9 @@ The primary purpose of the survey was to describe and map the soils and vegetati
 \hypertarget{climate}{%
 \section{Climate}\label{climate}}
 
-The Arctic Coastal Plain of Alaska is characterized by a harsh tundra climate, classified as ET in the Köppen system. This region experiences extreme temperature variations, with brutally cold winters where average temperatures often plummet below -22°F, and brief, cool summers barely reaching 37-54°F in July. The average annual temperature ranges from 8 to 14°F. The average freeze-free period is fewer than 5 days to 20 days. Freezing temperatures can occur in any month.
+The Arctic Coastal Plain of Alaska is characterized by a harsh tundra climate, classified as ET in the Köppen system. This region experiences extreme temperature variations, with brutally cold winters where average temperatures often plummet below -15°F, and brief, cool summers barely reaching 50°F in July. The average annual temperature ranges from 8 to 14°F. The average freeze-free period is fewer than 5 days to 20 days. Freezing temperatures can occur in any month.
 
-Despite its frigid nature, the coastal plain receives surprisingly little precipitation, typically ranging from 4-10 inches annually. Most of this falls as snow, blanketing the landscape for much of the year. The average annual snowfall is about 50 to 100 centimeters. The low precipitation, coupled with minimal evaporation rates due to the cold, creates a unique hydrologic balance that doesn't quite fit the traditional definition of a desert.
+Despite its frigid nature, the arctic coastal plain receives surprisingly little precipitation, typically ranging from 6-10 inches annually. Most of this falls as snow, blanketing the landscape for much of the year. The average annual snowfall is about 50 to 100 centimeters. The low precipitation, coupled with minimal evaporation rates due to the cold, creates a unique hydrologic balance that doesn't quite fit the traditional definition of a desert.
 
 One of the most striking features of this climate is the dramatic swing in daylight hours throughout the year. Summers bring the phenomenon of the midnight sun, with 24 hours of continuous daylight, while winters plunge the region into weeks of polar night. This extreme light regime profoundly impacts biological rhythms and human activities alike. The coastal plain is also known for its windy conditions, with strong easterly winds being common. These winds, combined with the already frigid temperatures, can create dangerously low wind chill factors.
 
@@ -431,6 +431,111 @@ labs(title = ``Minimum Daily Temperature 2004-2024'',
 x = ``Month'',
 y = ``Temperature (Fahrenheit)'')
 color = ``Water Year''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(plotly)}
+\FunctionTok{library}\NormalTok{(tidyr)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(lubridate)}
+
+\NormalTok{df1 }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"\_book/dailyAvgTemp.csv"}\NormalTok{, }\AttributeTok{delim =} \StringTok{"|"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 682 Columns: 14
+## -- Column specification --------------------------------------------------------
+## Delimiter: "|"
+## dbl (14): Water Year, Day, Oct, Nov, Dec, Jan, Feb, Mar, Apr, May, Jun, Jul,...
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data }\OtherTok{\textless{}{-}}\NormalTok{ df1}
+
+\NormalTok{data\_long }\OtherTok{\textless{}{-}}\NormalTok{ data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Water Year}\StringTok{\textasciigrave{}}\NormalTok{, Day),}
+               \AttributeTok{names\_to =} \StringTok{"Month"}\NormalTok{,}
+               \AttributeTok{values\_to =} \StringTok{"Temperature"}\NormalTok{)}
+
+\NormalTok{month\_order }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Jan"}\NormalTok{, }\StringTok{"Feb"}\NormalTok{, }\StringTok{"Mar"}\NormalTok{, }\StringTok{"Apr"}\NormalTok{, }\StringTok{"May"}\NormalTok{, }\StringTok{"Jun"}\NormalTok{, }\StringTok{"Jul"}\NormalTok{, }\StringTok{"Aug"}\NormalTok{, }\StringTok{"Sep"}\NormalTok{, }\StringTok{"Oct"}\NormalTok{, }\StringTok{"Nov"}\NormalTok{, }\StringTok{"Dec"}\NormalTok{)}
+
+\NormalTok{data\_long }\OtherTok{\textless{}{-}}\NormalTok{ data\_long }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{Month =} \FunctionTok{factor}\NormalTok{(Month, }\AttributeTok{levels =}\NormalTok{ month\_order, }\AttributeTok{ordered =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{Date =} \FunctionTok{as.Date}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"2000"}\NormalTok{, Month, Day, }\AttributeTok{sep =} \StringTok{"{-}"}\NormalTok{), }\AttributeTok{format =} \StringTok{"\%Y{-}\%b{-}\%d"}\NormalTok{),}
+    \StringTok{\textasciigrave{}}\AttributeTok{Water Year}\StringTok{\textasciigrave{}} \OtherTok{=} \FunctionTok{as.factor}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Water Year}\StringTok{\textasciigrave{}}\NormalTok{),}
+    \AttributeTok{hover\_text =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Water Year:"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Water Year}\StringTok{\textasciigrave{}}\NormalTok{, }\StringTok{"\textless{}br\textgreater{}"}\NormalTok{,}
+                       \StringTok{"Month:"}\NormalTok{, Month, }\StringTok{"\textless{}br\textgreater{}"}\NormalTok{,}
+                       \StringTok{"Day:"}\NormalTok{, Day, }\StringTok{"\textless{}br\textgreater{}"}\NormalTok{,}
+                       \StringTok{"Temperature:"}\NormalTok{, }\FunctionTok{round}\NormalTok{(Temperature, }\DecValTok{1}\NormalTok{), }\StringTok{"°F"}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(Month, Day)}
+
+\CommentTok{\# Calculate the average temperature for each day of the year}
+\NormalTok{avg\_temp }\OtherTok{\textless{}{-}}\NormalTok{ data\_long }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(Month, Day) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{AvgTemperature =} \FunctionTok{mean}\NormalTok{(Temperature, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }\AttributeTok{.groups =} \StringTok{\textquotesingle{}drop\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{Date =} \FunctionTok{as.Date}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"2000"}\NormalTok{, Month, Day, }\AttributeTok{sep =} \StringTok{"{-}"}\NormalTok{), }\AttributeTok{format =} \StringTok{"\%Y{-}\%b{-}\%d"}\NormalTok{),}
+    \AttributeTok{hover\_text =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Average Temperature"}\NormalTok{, }\StringTok{"\textless{}br\textgreater{}"}\NormalTok{,}
+                       \StringTok{"Month:"}\NormalTok{, Month, }\StringTok{"\textless{}br\textgreater{}"}\NormalTok{,}
+                       \StringTok{"Day:"}\NormalTok{, Day, }\StringTok{"\textless{}br\textgreater{}"}\NormalTok{,}
+                       \StringTok{"Temperature:"}\NormalTok{, }\FunctionTok{round}\NormalTok{(AvgTemperature, }\DecValTok{1}\NormalTok{), }\StringTok{"°F"}\NormalTok{)}
+\NormalTok{  )}
+
+\CommentTok{\# Create the combined line graph}
+\NormalTok{p }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
+  \CommentTok{\# Individual year lines}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{data =}\NormalTok{ data\_long, }
+            \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Date, }\AttributeTok{y =}\NormalTok{ Temperature, }\AttributeTok{color =} \StringTok{\textasciigrave{}}\AttributeTok{Water Year}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{group =} \StringTok{\textasciigrave{}}\AttributeTok{Water Year}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{text =}\NormalTok{ hover\_text), }
+            \AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
+  \CommentTok{\# Average temperature line}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{data =}\NormalTok{ avg\_temp, }
+            \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Date, }\AttributeTok{y =}\NormalTok{ AvgTemperature),}
+            \AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_date}\NormalTok{(}\AttributeTok{date\_labels =} \StringTok{"\%b"}\NormalTok{, }\AttributeTok{date\_breaks =} \StringTok{"1 month"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis\_d}\NormalTok{(}\AttributeTok{option =} \StringTok{"plasma"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Color{-}blind friendly palette}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Average Daily Temperature 2004{-}2024"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Month"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Temperature (Fahrenheit)"}\NormalTok{,}
+       \AttributeTok{color =} \StringTok{"Water Year"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"right"}\NormalTok{,}
+        \AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in geom_line(data = data_long, aes(x = Date, y = Temperature, color =
+## `Water Year`, : Ignoring unknown aesthetics: text
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Convert to interactive plotly object with custom hover}
+\NormalTok{p\_interactive }\OtherTok{\textless{}{-}} \FunctionTok{ggplotly}\NormalTok{(p, }\AttributeTok{tooltip =} \StringTok{"text"}\NormalTok{)}
+
+\CommentTok{\# Modify hover template and mode}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(p\_interactive}\SpecialCharTok{$}\NormalTok{x}\SpecialCharTok{$}\NormalTok{data)) \{}
+\NormalTok{  p\_interactive}\SpecialCharTok{$}\NormalTok{x}\SpecialCharTok{$}\NormalTok{data[[i]]}\SpecialCharTok{$}\NormalTok{hoverinfo }\OtherTok{\textless{}{-}} \StringTok{"text"}
+\NormalTok{  p\_interactive}\SpecialCharTok{$}\NormalTok{x}\SpecialCharTok{$}\NormalTok{data[[i]]}\SpecialCharTok{$}\NormalTok{hoverlabel }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{bgcolor =} \StringTok{"white"}\NormalTok{)}
+\NormalTok{\}}
+
+\NormalTok{p\_interactive }\OtherTok{\textless{}{-}}\NormalTok{ p\_interactive }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{layout}\NormalTok{(}\AttributeTok{hovermode =} \StringTok{"closest"}\NormalTok{)}
+
+\CommentTok{\# Display the plot}
+\NormalTok{p\_interactive}
+\end{Highlighting}
+\end{Shaded}
 
 library(tidyr)
 library(ggplot2)
