@@ -5,6 +5,8 @@
 The Arctic Coastal Plain of Alaska is characterized by a harsh tundra climate, classified as ET in the Köppen system. This region experiences extreme temperature variations, with brutally cold winters where average temperatures often plummet below -22°F, and brief, cool summers barely reaching 37-54°F in July. The average annual temperature ranges from 8 to 14°F. The average freeze-free period is fewer than 5 days to 20 days. Freezing temperatures can occur in any month.
 
 ```{r, echo = FALSE, warning=FALSE, message=FALSE}
+
+library(plotly)
 library(tidyr)
 library(ggplot2)
 library(readr)
@@ -68,9 +70,16 @@ p <- ggplot() +
         axis.text.x = element_text(angle = 45, hjust = 1))
 
 # Convert to interactive plotly object with custom hover
-p_interactive <- ggplotly(p, tooltip = "text") %>%
-  layout(hoverlabel = list(bgcolor = "white"),
-         hovermode = "closest")
+p_interactive <- ggplotly(p, tooltip = "text")
+
+# Modify hover template and mode
+for (i in 1:length(p_interactive$x$data)) {
+  p_interactive$x$data[[i]]$hoverinfo <- "text"
+  p_interactive$x$data[[i]]$hoverlabel <- list(bgcolor = "white")
+}
+
+p_interactive <- p_interactive %>% 
+  layout(hovermode = "closest")
 
 # Display the plot
 p_interactive
