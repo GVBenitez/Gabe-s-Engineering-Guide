@@ -3,6 +3,7 @@ title: "Soil and Vegetation Survey of the Willow National Petroleum Reserve-Alas
 author: "Gabriel Benitez"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
+always_allow_html: true
 documentclass: book
 bibliography: [book.bib, packages.bib]
 # url: your book url like https://bookdown.org/yihui/bookdown

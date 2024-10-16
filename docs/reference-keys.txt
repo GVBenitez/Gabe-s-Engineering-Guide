@@ -28,4 +28,3 @@ create-a-function-to-reorder-months-from-oct-to-sep
 prepare-the-data-for-plotting
 calculate-average-cumulative-precipitation
 create-the-plot
-url-your-book-url-like-httpsbookdown.orgyihuibookdown

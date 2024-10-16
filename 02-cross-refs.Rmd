@@ -22,23 +22,38 @@ data_long <- data %>%
                values_to = "Temperature")
 
 month_order <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+
 data_long <- data_long %>%
   mutate(
     Month = factor(Month, levels = month_order, ordered = TRUE),
-    Date = as.Date(paste("2000", Month, Day, sep = "-"), format = "%Y-%b-%d")
-  )
+    Date = as.Date(paste("2000", Month, Day, sep = "-"), format = "%Y-%b-%d"),
+    `Water Year` = as.factor(`Water Year`),
+    hover_text = paste("Water Year:", `Water Year`, "<br>",
+                       "Month:", Month, "<br>",
+                       "Day:", Day, "<br>",
+                       "Temperature:", round(Temperature, 1), "°F")
+  ) %>%
+  arrange(Month, Day)
 
-# Calculate the average temperature for each day across all years
+# Calculate the average temperature for each day of the year
 avg_temp <- data_long %>%
-  group_by(Date) %>%
-  summarise(AvgTemperature = mean(Temperature, na.rm = TRUE))
+  group_by(Month, Day) %>%
+  summarise(AvgTemperature = mean(Temperature, na.rm = TRUE), .groups = 'drop') %>%
+  mutate(
+    Date = as.Date(paste("2000", Month, Day, sep = "-"), format = "%Y-%b-%d"),
+    hover_text = paste("Average Temperature", "<br>",
+                       "Month:", Month, "<br>",
+                       "Day:", Day, "<br>",
+                       "Temperature:", round(AvgTemperature, 1), "°F")
+  )
 
 # Create the combined line graph
 p <- ggplot() +
   # Individual year lines
   geom_line(data = data_long, 
-            aes(x = Date, y = Temperature), 
+            aes(x = Date, y = Temperature, color = `Water Year`, group = `Water Year`, text = hover_text), 
             alpha = 0.5) +
+  # Average temperature line
   geom_line(data = avg_temp, 
             aes(x = Date, y = AvgTemperature),
             color = "black", size = 1.2) +
@@ -46,9 +61,20 @@ p <- ggplot() +
   scale_color_viridis_d(option = "plasma") +  # Color-blind friendly palette
   labs(title = "Average Daily Temperature 2004-2024",
        x = "Month",
-       y = "Temperature (Fahrenheit)")
+       y = "Temperature (Fahrenheit)",
+       color = "Water Year") +
+  theme_minimal() +
+  theme(legend.position = "right",
+        axis.text.x = element_text(angle = 45, hjust = 1))
 
-plotly::ggplotly(p)
+# Convert to interactive plotly object with custom hover
+p_interactive <- ggplotly(p, tooltip = "text") %>%
+  layout(hoverlabel = list(bgcolor = "white"),
+         hovermode = "closest")
+
+# Display the plot
+p_interactive
+
 ```
 
 Despite its frigid nature, the coastal plain receives surprisingly little precipitation, typically ranging from 4-10 inches annually. Most of this falls as snow, blanketing the landscape for much of the year. The average annual snowfall is about 50 to 100 centimeters. The low precipitation, coupled with minimal evaporation rates due to the cold, creates a unique hydrologic balance that doesn't quite fit the traditional definition of a desert.
@@ -114,7 +140,7 @@ p <- ggplot() +
   scale_x_discrete(limits = levels(reorder_month(avg_precip$Month))) +
   scale_color_viridis(discrete = TRUE, option = "plasma", name = "Water Year") +
   labs(
-    title = "Average Cumulative Precipitation 2004-2024",
+    title = "Cumulative Precipitation of Water Years 2004-2024",
     x = "Month",
     y = "Cumulative Precipitation (Inches)"
   ) +
@@ -128,6 +154,8 @@ p <- ggplot() +
   )
 
 plotly_plot <- ggplotly(p)
+
+plotly_plot
 
 ```
 

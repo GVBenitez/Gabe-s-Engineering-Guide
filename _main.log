@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.9)  15 OCT 2024 15:15
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.9)  16 OCT 2024 08:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -772,34 +772,18 @@ Chapter 2.
 
 ]
 Chapter 3.
-File: _main_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type pdf)
-<use _main_files/figure-latex/unnamed-chunk-2-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 
 
 [11]
-File: _main_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
-<use _main_files/figure-latex/unnamed-chunk-3-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[12]
-Overfull \hbox (17.937pt too wide) in paragraph at lines 227--228
+Overfull \hbox (17.937pt too wide) in paragraph at lines 206--207
 []\TU/lmr/m/n/10 To label an un-numbered heading, use: \TU/lmtt/m/n/10 # Hello world {-#nice-label}
  []
 
 
-
-[13]
-
-LaTeX Warning: Reference `cross' on page 14 undefined on input line 230.
+LaTeX Warning: Reference `cross' on page 12 undefined on input line 209.
 
 
-Underfull \hbox (badness 2512) in paragraph at lines 230--231
+Underfull \hbox (badness 2512) in paragraph at lines 209--210
 []\TU/lmr/m/n/10 Next, reference the labeled heading anywhere in the text using
  []
 
@@ -807,19 +791,27 @@ File: _main_files/figure-latex/nice-fig-1.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/nice-fig-1.pdf>
 
 
-[14]
+[12]
+
+[13]
+
+[14
+
+]
+Chapter 4.
+
+Underfull \hbox (badness 1859) in paragraph at lines 284--285
+[]\TU/lmr/m/n/10 Add an unnumbered part: \TU/lmtt/m/n/10 # (PART\*) Act one {-} \TU/lmr/m/n/10 (followed by \TU/lmtt/m/n/10 # A
+ []
+
+
 
 [15]
 
 [16
 
 ]
-Chapter 4.
-
-Underfull \hbox (badness 1859) in paragraph at lines 305--306
-[]\TU/lmr/m/n/10 Add an unnumbered part: \TU/lmtt/m/n/10 # (PART\*) Act one {-} \TU/lmr/m/n/10 (followed by \TU/lmtt/m/n/10 # A
- []
-
+Chapter 5.
 
 
 [17]
@@ -827,7 +819,7 @@ Underfull \hbox (badness 1859) in paragraph at lines 305--306
 [18
 
 ]
-Chapter 5.
+Chapter 6.
 
 
 [19]
@@ -835,120 +827,102 @@ Chapter 5.
 [20
 
 ]
-Chapter 6.
+Chapter 7.
 
 
 [21]
 
-[22
-
-]
-Chapter 7.
-
-
-[23]
-
-[24]
+[22]
 Chapter 8.
 
-Underfull \hbox (badness 1565) in paragraph at lines 423--429
+Underfull \hbox (badness 1565) in paragraph at lines 402--408
 []\TU/lmr/m/n/10 month_order <- c(“Jan”, “Feb”, “Mar”, “Apr”, “May”, “Jun”, “Jul”,
  []
 
 
 
-[25
+[23
 
 ]
 
-[26
+[24
 
 ]
 Chapter 9.
 
-Overfull \hbox (13.14003pt too wide) in paragraph at lines 433--436
+Overfull \hbox (13.14003pt too wide) in paragraph at lines 412--415
 \TU/lmr/m/n/10 avg_temp <- data_long %>% group_by(Date) %>% summarise(AvgTemperature
+ []
+
+
+
+[25]
+
+
+Overfull \hbox (132.35013pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 26 \TU/lmr/m/sl/10 CHAPTER 9.  CALCULATE THE AVERAGE TEMPERATURE FOR EACH DAY ACROSS ALL YEARS
+ []
+
+[26
+
+]
+Chapter 10.
+
+Underfull \hbox (badness 4108) in paragraph at lines 454--461
+[]\TU/lmr/m/n/10 data_long <- data_long %>% mutate( MonthNum = match(Month,
  []
 
 
 
 [27]
 
-
-Overfull \hbox (132.35013pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 28 \TU/lmr/m/sl/10 CHAPTER 9.  CALCULATE THE AVERAGE TEMPERATURE FOR EACH DAY ACROSS ALL YEARS
- []
-
 [28
-
-]
-Chapter 10.
-
-Underfull \hbox (badness 4108) in paragraph at lines 473--480
-[]\TU/lmr/m/n/10 data_long <- data_long %>% mutate( MonthNum = match(Month,
- []
-
-
-
-[29]
-
-[30
 
 ]
 Chapter 11.
 
 
-[31]
+[29]
 
 
 Overfull \hbox (58.94012pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 32 \TU/lmr/m/sl/10 CHAPTER 11.  CREATE A FUNCTION TO REORDER MONTHS FROM OCT TO SEP
+\TU/lmr/m/n/10 30 \TU/lmr/m/sl/10 CHAPTER 11.  CREATE A FUNCTION TO REORDER MONTHS FROM OCT TO SEP
  []
 
-[32
+[30
 
 ]
 Chapter 12.
 
 
-[33]
+[31]
 
-[34
+[32
 
 ]
 Chapter 13.
 
 
-[35]
+[33]
 
 
 Overfull \hbox (6.79672pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 36 \TU/lmr/m/sl/10 CHAPTER 13.  CALCULATE AVERAGE CUMULATIVE PRECIPITATION
+\TU/lmr/m/n/10 34 \TU/lmr/m/sl/10 CHAPTER 13.  CALCULATE AVERAGE CUMULATIVE PRECIPITATION
  []
 
-[36
+[34
 
 ]
 Chapter 14.
-
-Underfull \hbox (badness 1122) in paragraph at lines 509--528
-\TU/lmr/m/n/10 ggplot() + geom_line(data = data_plot, aes(x = Month, y = Precip,
- []
-
-
-Underfull \hbox (badness 1033) in paragraph at lines 509--528
-\TU/lmr/m/n/10 avg_precip, aes(x = Month, y = AvgPrecip, group = 1), size = 1.5,
- []
-
 (./_main.bbl
 
-[37]
+[35]
 
-[38
+[36
 
 ])
 
-[39] (./_main.aux)
+[37] (./_main.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-09-10>
@@ -958,12 +932,12 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 17704 strings out of 476233
- 325694 string characters out of 5785007
- 851616 words of memory out of 5000000
- 40023 multiletter control sequences out of 15000+600000
+ 17684 strings out of 476233
+ 324728 string characters out of 5785007
+ 853616 words of memory out of 5000000
+ 40005 multiletter control sequences out of 15000+600000
  564552 words of font info for 93 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 90i,8n,123p,1184b,486s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,8n,123p,1184b,468s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on _main.pdf (39 pages).
+Output written on _main.pdf (37 pages).

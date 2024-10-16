@@ -5,6 +5,8 @@ library(readr)
 library(dplyr)
 library(tidyverse)
 library(lubridate)
+library(viridis)
+library(plotly)
 
 df1 <- read_delim("_book/dailyPrecip.csv", delim = "|")
 
@@ -42,26 +44,32 @@ data_plot <- data_long %>%
 avg_precip <- data_plot %>%
   group_by(Month) %>%
   summarize(AvgPrecip = mean(Precip, na.rm = TRUE))
+  
+data_plot$WaterYear <- as.factor(data_plot$WaterYear)
 
 # Create the plot
-ggplot() +
-  geom_line(data = data_plot, aes(x = Month, y = Precip, group = WaterYear), 
-            size = 1, color = "grey80") +
+p <- ggplot() +
+  geom_line(data = data_plot, aes(x = Month, y = Precip, group = WaterYear, color = WaterYear), 
+            linewidth = 1) +
   geom_line(data = avg_precip, aes(x = Month, y = AvgPrecip, group = 1), 
-            size = 1.5, color = "black") +
+            linewidth = 1.5, color = "black") +
   geom_point(data = avg_precip, aes(x = Month, y = AvgPrecip), 
              size = 1, color = "black") +
   scale_x_discrete(limits = levels(reorder_month(avg_precip$Month))) +
+  scale_color_viridis(discrete = TRUE, option = "plasma", name = "Water Year") +
   labs(
-    title = "Average Cumulative Precipitation by Month",
+    title = "Average Cumulative Precipitation 2004-2024",
     x = "Month",
     y = "Cumulative Precipitation (Inches)"
   ) +
   theme_minimal() +
   theme(
-    legend.position = "none",
+   legend.position = "right",
     axis.text.x = element_text(angle = 45, hjust = 1),
-    panel.grid.minor = element_blank()
+    panel.grid.minor = element_blank(),
+    legend.key = element_rect(fill = "white", colour = NA),
+    legend.key.size = unit(0.8, "cm")
   )
 
+plotly_plot <- ggplotly(p)
 
