@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.9)  16 OCT 2024 11:57
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.9)  16 OCT 2024 13:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -741,24 +741,17 @@ Chapter 1.
 File: _book/IMG_1982.JPG Graphic file (type bmp)
 <_book/IMG_1982.JPG>
 
+Underfull \vbox (badness 6332) has occurred while \output is active []
+
+
 
 [5
 
 ]
 
-
-Overfull \hbox (147.38123pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 6 \TU/lmr/m/sl/10 CHAPTER 1.  SOIL AND VEGETATION SURVEY OF THE NATIONAL PETROLEUM RESERVE-ALASKA
- []
-
 [6]
 
 [7]
-
-
-Overfull \hbox (147.38123pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 8 \TU/lmr/m/sl/10 CHAPTER 1.  SOIL AND VEGETATION SURVEY OF THE NATIONAL PETROLEUM RESERVE-ALASKA
- []
 
 [8
 
@@ -775,15 +768,15 @@ Chapter 3.
 
 
 [11]
-Overfull \hbox (17.937pt too wide) in paragraph at lines 206--207
+Overfull \hbox (17.937pt too wide) in paragraph at lines 213--214
 []\TU/lmr/m/n/10 To label an un-numbered heading, use: \TU/lmtt/m/n/10 # Hello world {-#nice-label}
  []
 
 
-LaTeX Warning: Reference `cross' on page 12 undefined on input line 209.
+LaTeX Warning: Reference `cross' on page 12 undefined on input line 216.
 
 
-Underfull \hbox (badness 2512) in paragraph at lines 209--210
+Underfull \hbox (badness 2512) in paragraph at lines 216--217
 []\TU/lmr/m/n/10 Next, reference the labeled heading anywhere in the text using
  []
 
@@ -800,7 +793,7 @@ File: _main_files/figure-latex/nice-fig-1.pdf Graphic file (type pdf)
 ]
 Chapter 4.
 
-Underfull \hbox (badness 1859) in paragraph at lines 284--285
+Underfull \hbox (badness 1859) in paragraph at lines 291--292
 []\TU/lmr/m/n/10 Add an unnumbered part: \TU/lmtt/m/n/10 # (PART\*) Act one {-} \TU/lmr/m/n/10 (followed by \TU/lmtt/m/n/10 # A
  []
 
@@ -835,7 +828,7 @@ Chapter 7.
 [22]
 Chapter 8.
 
-Underfull \hbox (badness 1565) in paragraph at lines 402--408
+Underfull \hbox (badness 1565) in paragraph at lines 409--415
 []\TU/lmr/m/n/10 month_order <- c(“Jan”, “Feb”, “Mar”, “Apr”, “May”, “Jun”, “Jul”,
  []
 
@@ -850,7 +843,7 @@ Underfull \hbox (badness 1565) in paragraph at lines 402--408
 ]
 Chapter 9.
 
-Overfull \hbox (13.14003pt too wide) in paragraph at lines 412--415
+Overfull \hbox (13.14003pt too wide) in paragraph at lines 419--422
 \TU/lmr/m/n/10 avg_temp <- data_long %>% group_by(Date) %>% summarise(AvgTemperature
  []
 
@@ -868,46 +861,46 @@ Overfull \hbox (132.35013pt too wide) has occurred while \output is active
 ]
 Chapter 10.
 
-Overfull \hbox (90.75pt too wide) in paragraph at lines 457--457
+Overfull \hbox (90.75pt too wide) in paragraph at lines 464--464
 []\TU/lmtt/m/n/10 ## -- Column specification --------------------------------------------------------[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 457--457
+Overfull \hbox (85.5pt too wide) in paragraph at lines 464--464
 []\TU/lmtt/m/n/10 ## dbl (14): Water Year, Day, Oct, Nov, Dec, Jan, Feb, Mar, Apr, May, Jun, Jul,...[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 457--457
+Overfull \hbox (43.5pt too wide) in paragraph at lines 464--464
 []\TU/lmtt/m/n/10 ## i Use `spec()` to retrieve the full column specification for this data.[] 
  []
 
 
-Overfull \hbox (96.0pt too wide) in paragraph at lines 457--457
+Overfull \hbox (96.0pt too wide) in paragraph at lines 464--464
 []\TU/lmtt/m/n/10 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.[] 
  []
 
 
 
 [27]
-Underfull \vbox (badness 10000) detected at line 514
+Underfull \vbox (badness 10000) detected at line 521
  []
 
 
-Underfull \vbox (badness 10000) detected at line 514
+Underfull \vbox (badness 10000) detected at line 521
  []
 
 
 
 [28]
-Overfull \hbox (75.0pt too wide) in paragraph at lines 519--519
+Overfull \hbox (75.0pt too wide) in paragraph at lines 526--526
 []\TU/lmtt/m/n/10 ## Warning in geom_line(data = data_long, aes(x = Date, y = Temperature, color =[] 
  []
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 527.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 534.
 
-Underfull \hbox (badness 4108) in paragraph at lines 559--566
+Underfull \hbox (badness 4108) in paragraph at lines 566--573
 []\TU/lmr/m/n/10 data_long <- data_long %>% mutate( MonthNum = match(Month,
  []
 
@@ -971,10 +964,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 17693 strings out of 476233
- 324904 string characters out of 5785007
- 857616 words of memory out of 5000000
- 40010 multiletter control sequences out of 15000+600000
+ 17695 strings out of 476233
+ 324884 string characters out of 5785007
+ 857820 words of memory out of 5000000
+ 40012 multiletter control sequences out of 15000+600000
  564568 words of font info for 95 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  90i,8n,123p,1184b,468s stack positions out of 10000i,1000n,20000p,200000b,200000s

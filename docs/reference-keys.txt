@@ -1,11 +1,12 @@
 fig:nice-fig
 tab:nice-tab
 eq:binom
-soil-and-vegetation-survey-of-the-national-petroleum-reserve-alaska
+interactive-project-map
+survey-purpose
 acknowledgements
 usage
 introduction
-survey-purpose
+survey-purpose-1
 general-nature-of-the-area
 climate
 captioned-figures-and-tables
@@ -28,7 +29,3 @@ create-a-function-to-reorder-months-from-oct-to-sep
 prepare-the-data-for-plotting
 calculate-average-cumulative-precipitation
 create-the-plot
-introduction-1
-survey-purpose-1
-interactive-map
-interactive-project-map
