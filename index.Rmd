@@ -39,9 +39,9 @@ polygon1 <- st_transform(polygon1, 4326)
 combined_bbox <- st_bbox(c(st_bbox(polygon), st_bbox(polygon1)))
 
 towns <- data.frame(
-  name = c("Anchorage", "Fairbanks", "Prudhoe Bay", "Nuiqsut", "Umiat", "Utqiaġvik", "Juneau"),
-  lat = c(61.2176, 64.8378, 70.2556, 70.2175, 69.3672, 71.2906, 58.3019),
-  lon = c(-149.8997, -147.7164, -148.3384, -150.9764, -152.1394, -156.7886, -134.4197)
+  name = c("Anchorage", "Fairbanks", "Prudhoe Bay", "Nuiqsut", "Umiat", "Utqiaġvik", "Juneau", "Inigok Field Station"),
+  lat = c(61.2176, 64.8378, 70.2556, 70.2175, 69.3672, 71.2906, 58.3019, 70.0030),
+  lon = c(-149.8997, -147.7164, -148.3384, -150.9764, -152.1394, -156.7886, -134.4197, -153.0866)
 )
 
 whiteDotIcon <- makeIcon(
