@@ -4,10 +4,179 @@ library(ggplot2)
 library(readr)
 library(dplyr)
 ```
-# Introduction 
+# General Nature of the Area
 
-The Willow area of the National Petroleum Reserve-Alaska (NPR-A) is in the Arctic Coastal Plain of the North Slope of Alaska, approximately 90 miles (145 km) west of Deadhorse. These lands were originally inhabited by various Alaska Native groups, including the Iñupiat people for thousands of years. In 1923, President Warren G. Harding established the Naval Petroleum Reserve No.4 (NPR-4) through an executive order, which brought this area under federal ownership without consultation or compensation to the Alaska Native peoples. In 1976, the Naval Petroleum Reserves Production Act renamed the area to the National Petroleum Reserve-Alaska and transferred the management of the reserve from the United States Navy to the United States Department of Interior, Bureau of Land Management. In recent years, there has been increased interest in developing the oil resources in the NPR-A, exemplified by projects such as the Willow Project. The NPR-A is approximately 24 million acres stretching across the North Slope of Alaska. The soil and vegetation survey area of the Willow area is approximately 500,000 acres on the Eastern most side of the NPR-A. 
+## Climate
 
-## Survey Purpose
+The Arctic Coastal Plain of Alaska is characterized by a harsh tundra climate, classified as ET in the Köppen system. This region experiences extreme temperature variations, with brutally cold winters where average temperatures often plummet below -15°F, and brief, cool summers barely reaching 50°F in July. The average annual temperature ranges from 8 to 14°F. The average freeze-free period is fewer than 5 days to 20 days. Freezing temperatures can occur in any month.
 
-The primary purpose of the survey was to describe and map the soils and vegetation of the Willow area in the NPR-A. Area soils and vegetation were mapped at a scale of 1:24,000 and detailed description of the map units, soil types, and vegetation cover types were developed.
+```{r, echo = FALSE, warning=FALSE, message=FALSE}
+
+library(plotly)
+library(tidyr)
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(tidyverse)
+library(lubridate)
+
+df1 <- read_delim("_book/dailyAvgTemp.csv", delim = "|")
+
+data <- df1
+
+data_long <- data %>%
+  pivot_longer(cols = -c(`Water Year`, Day),
+               names_to = "Month",
+               values_to = "Temperature")
+
+month_order <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+
+data_long <- data_long %>%
+  mutate(
+    Month = factor(Month, levels = month_order, ordered = TRUE),
+    Date = as.Date(paste("2000", Month, Day, sep = "-"), format = "%Y-%b-%d"),
+    `Water Year` = as.factor(`Water Year`),
+    hover_text = paste("Water Year:", `Water Year`, "<br>",
+                       "Month:", Month, "<br>",
+                       "Day:", Day, "<br>",
+                       "Temperature:", round(Temperature, 1), "°F")
+  ) %>%
+  arrange(Month, Day)
+
+# Calculate the average temperature for each day of the year
+avg_temp <- data_long %>%
+  group_by(Month, Day) %>%
+  summarise(AvgTemperature = mean(Temperature, na.rm = TRUE), .groups = 'drop') %>%
+  mutate(
+    Date = as.Date(paste("2000", Month, Day, sep = "-"), format = "%Y-%b-%d"),
+    hover_text = paste("Average Temperature", "<br>",
+                       "Month:", Month, "<br>",
+                       "Day:", Day, "<br>",
+                       "Temperature:", round(AvgTemperature, 1), "°F")
+  )
+
+# Create the combined line graph
+p <- ggplot() +
+  # Individual year lines
+  geom_line(data = data_long, 
+            aes(x = Date, y = Temperature, color = `Water Year`, group = `Water Year`, text = hover_text), 
+            alpha = 0.5) +
+  # Average temperature line
+  geom_line(data = avg_temp, 
+            aes(x = Date, y = AvgTemperature),
+            color = "black", size = 1.2) +
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+  scale_color_viridis_d(option = "plasma") +  # Color-blind friendly palette
+  labs(title = "Average Daily Temperature 2004-2024",
+       x = "Month",
+       y = "Temperature (°F)",
+       color = "Water Year") +
+  theme_minimal() +
+  theme(legend.position = "right",
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Convert to interactive plotly object with custom hover
+p_interactive <- ggplotly(p, tooltip = "text")
+
+# Modify hover template and mode
+for (i in 1:length(p_interactive$x$data)) {
+  p_interactive$x$data[[i]]$hoverinfo <- "text"
+  p_interactive$x$data[[i]]$hoverlabel <- list(bgcolor = "white")
+}
+
+p_interactive <- p_interactive %>% 
+  layout(hovermode = "closest")
+
+# Display the plot
+p_interactive
+
+```
+
+Despite its frigid nature, the arctic coastal plain receives surprisingly little precipitation, typically ranging from 6-10 inches annually. Most of this falls as snow, blanketing the landscape for much of the year. The average annual snowfall is about 50 to 100 centimeters. The low precipitation, coupled with minimal evaporation rates due to the cold, creates a unique hydrologic balance that doesn't quite fit the traditional definition of a desert.
+
+```{r, echo = FALSE, warning=FALSE, message=FALSE}
+
+library(tidyr)
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(tidyverse)
+library(lubridate)
+library(viridis)
+library(plotly)
+
+df1 <- read_delim("_book/dailyPrecip.csv", delim = "|")
+
+data <- df1 %>%
+  rename(Year = "Water Year")
+
+data_long <- data %>%
+  pivot_longer(cols = -c(Year, Day),
+               names_to = "Month",
+               values_to = "Precip")
+
+data_long <- data_long %>%
+  mutate(
+    MonthNum = match(Month, month.abb),
+    Date = make_date(Year, MonthNum, Day),
+    MonthNum = NULL
+  ) %>%
+  mutate(Date = ymd(Date))
+
+# Create a function to reorder months from Oct to Sep
+reorder_month <- function(x) {
+  factor(x, levels = c("Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"))
+}
+
+# Prepare the data for plotting
+data_plot <- data_long %>%
+  mutate(
+    WaterYear = ifelse(month(Date) >= 10, Year, Year - 1),
+    Month = reorder_month(Month)
+  ) %>%
+  filter(Day == days_in_month(Date)) %>%
+  arrange(WaterYear, Month)
+
+# Calculate average cumulative precipitation
+avg_precip <- data_plot %>%
+  group_by(Month) %>%
+  summarize(AvgPrecip = mean(Precip, na.rm = TRUE))
+  
+data_plot$WaterYear <- as.factor(data_plot$WaterYear)
+
+# Create the plot
+p <- ggplot() +
+  geom_line(data = data_plot, aes(x = Month, y = Precip, group = WaterYear, color = WaterYear), 
+            linewidth = .5) +
+  geom_line(data = avg_precip, aes(x = Month, y = AvgPrecip, group = 1), 
+            linewidth = 1.5, color = "black") +
+  geom_point(data = avg_precip, aes(x = Month, y = AvgPrecip), 
+             size = 1, color = "black") +
+  scale_x_discrete(limits = levels(reorder_month(avg_precip$Month))) +
+  scale_color_viridis(discrete = TRUE, option = "plasma", name = "Water Year") +
+  labs(
+    title = "Cumulative Precipitation of Water Years 2004-2024",
+    x = "Month",
+    y = "Cumulative Precipitation (Inches)"
+  ) +
+  theme_minimal() +
+  theme(
+   legend.position = "right",
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.minor = element_blank(),
+    legend.key = element_rect(fill = "white", colour = NA),
+    legend.key.size = unit(0.8, "cm")
+  )
+
+plotly_plot <- ggplotly(p)
+
+plotly_plot
+
+```
+
+
+One of the most striking features of this climate is the dramatic swing in daylight hours throughout the year. Summers bring the phenomenon of the midnight sun, with 24 hours of continuous daylight, while winters plunge the region into weeks of polar night. This extreme light regime profoundly impacts biological rhythms and human activities alike. The coastal plain is also known for its windy conditions, with strong easterly winds being common. These winds, combined with the already frigid temperatures, can create dangerously low wind chill factors.
+
+The growing season in the Arctic Coastal Plain is exceptionally brief, usually lasting only 50-60 days. This short window of relatively warmer temperatures and thawed ground supports a unique but fragile tundra ecosystem. Coastal areas are further influenced by sea ice, which is typically present for 8-9 months of the year, affecting local weather patterns and wildlife migrations.
+
+Underlying this harsh surface climate is a layer of continuous permafrost, a defining characteristic of the region. The active layer, which thaws seasonally, is typically shallow, extending only 30-50 cm (12-20 inches) deep. This frozen ground significantly influences the area's ecology and presents unique challenges for construction and resource extraction.

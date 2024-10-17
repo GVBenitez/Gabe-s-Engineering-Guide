@@ -103,7 +103,7 @@ map <- map %>%
 map
 
 ```
-
+## Introduction
 
 The survey area within the National Petroleum Reserve-Alaska (NPR-A) is in the Arctic Coastal Plain of the North Slope of Alaska, approximately 90 miles (145 km) west of Prudhoe Bay. These lands were originally inhabited by various Alaska Native groups, including the Inupiat people for thousands of years. In 1923, President Warren G. Harding established the Naval Petroleum Reserve No.4 (NPR-4) through an executive order, which brought this area under federal ownership without consultation or compensation to the Alaska Native peoples. In 1976, the Naval Petroleum Reserves Production Act renamed the area to the National Petroleum Reserve-Alaska and transferred the management of the reserve from the United States Navy to the United States Department of Interior, Bureau of Land Management. In recent years, there has been increased interest in developing the oil resources in the NPR-A, exemplified by projects such as the Willow Project. The NPR-A is approximately 24 million acres stretching across the North Slope of Alaska. The soil and vegetation survey area is approximately 500,000 acres on the Eastern most side of the NPR-A. 
 
