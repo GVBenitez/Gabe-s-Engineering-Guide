@@ -6,7 +6,7 @@ introduction
 survey-purpose
 acknowledgements
 usage
-general-nature-of-the-area
+environmental-setting
 climate
 field-work
 captioned-figures-and-tables
