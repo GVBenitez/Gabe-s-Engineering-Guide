@@ -100,18 +100,6 @@ map <- map %>%
   ) %>%
   setView(lng = -150, lat = 64, zoom = 3.5)
 
-#js_code <- paste(readLines("_book/map_script.js"), collapse="\n")
-
-# Modify the map to include our JavaScript code
-#map <- map %>%
-#  onRender(sprintf("
-#    function(el, x) {
-#      %s
-#      addCustomControls(this);
-#    }
-#  ", js_code))
-
-# Display the map
 map
 
 ```
