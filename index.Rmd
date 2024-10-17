@@ -21,6 +21,8 @@ library(sf)
 library(leaflet)
 library(osmdata)
 library(dplyr)
+library(jsonlite)
+library(htmlwidgets)
 
 quietly <- function(x) {
   sink(tempfile())
@@ -41,7 +43,8 @@ combined_bbox <- st_bbox(c(st_bbox(polygon), st_bbox(polygon1)))
 towns <- data.frame(
   name = c("Anchorage", "Fairbanks", "Prudhoe Bay", "Nuiqsut", "Umiat", "Utqiaġvik", "Juneau", "Inigok Field Station"),
   lat = c(61.2176, 64.8378, 70.2556, 70.2175, 69.3672, 71.2906, 58.3019, 70.0030),
-  lon = c(-149.8997, -147.7164, -148.3384, -150.9764, -152.1394, -156.7886, -134.4197, -153.0866)
+  lon = c(-149.8997, -147.7164, -148.3384, -150.9764, -152.1394, -156.7886, -134.4197, -153.0866),
+  zoom_threshold = c(0, 0, 0, 6, 6, 6, 0, 0)  # 0 means always visible, 6 means visible at zoom level 6 and above
 )
 
 whiteDotIcon <- makeIcon(
@@ -59,55 +62,68 @@ map <- leaflet() %>%
   addPolygons(data = polygon1,
               fillOpacity = 0,
               color = "black",
-              weight = 2) %>%
-  addMarkers(data = towns, 
-             lng = ~lon, 
-             lat = ~lat, 
-             label = ~name,
-             icon = whiteDotIcon,
-             group = "Towns") %>%
-  addLabelOnlyMarkers(data = towns,
-                      lng = ~lon, 
-                      lat = ~lat, 
-                      label = ~name,
-                      labelOptions = labelOptions(noHide = T, 
-                                                  direction = "top", 
-                                                  textsize = "12px", 
-                                                  textOnly = TRUE, 
-                                                  offset = c(0, 0), 
-                                                  style = list("color" = "white", 
-                                                    "font-weight" = "bold", 
-                                                    "text-shadow" = "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
-                                                    "padding" = "1px",
-                                                    "line-height" = "1")),
-                      group = "Town Names") %>%
-  fitBounds(lng1 = min(combined_bbox[1], min(towns$lon)), 
-            lat1 = min(combined_bbox[2], min(towns$lat)), 
-            lng2 = max(combined_bbox[3], max(towns$lon)), 
-            lat2 = max(combined_bbox[4], max(towns$lat))) %>%
+              weight = 2)
+
+# Add markers and labels
+for(i in 1:nrow(towns)) {
+  map <- map %>%
+    addMarkers(lng = towns$lon[i], lat = towns$lat[i], 
+               icon = whiteDotIcon,
+               group = paste0("marker_", towns$name[i]),
+               options = markerOptions(opacity = ifelse(towns$zoom_threshold[i] == 0, 1, 0))) %>%
+    addLabelOnlyMarkers(lng = towns$lon[i], lat = towns$lat[i],
+                        label = towns$name[i],
+                        labelOptions = labelOptions(noHide = T, 
+                                                    direction = "top", 
+                                                    textsize = "12px", 
+                                                    textOnly = TRUE, 
+                                                    offset = c(0, -6),
+                                                    opacity = ifelse(towns$zoom_threshold[i] == 0, 1, 0),
+                                                    style = list(
+                                                      "color" = "white", 
+                                                      "font-weight" = "bold", 
+                                                      "text-shadow" = "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
+                                                      "padding" = "1px",
+                                                      "line-height" = "1"
+                                                    )),
+                        group = paste0("label_", towns$name[i]))
+}
+
+# Add legend and set view
+map <- map %>%
   addLegend(
      position = "bottomright",
     colors = c("red", "black"),
     labels = c("Survey Boundary", "NPR-A Boundary"),
     opacity = 1,
     title = "Legend"
-  )
-
-map <- map %>% 
+  ) %>%
   setView(lng = -150, lat = 64, zoom = 3.5)
 
+#js_code <- paste(readLines("_book/map_script.js"), collapse="\n")
+
+# Modify the map to include our JavaScript code
+#map <- map %>%
+#  onRender(sprintf("
+#    function(el, x) {
+#      %s
+#      addCustomControls(this);
+#    }
+#  ", js_code))
+
+# Display the map
 map
 
 ```
 
 
-The survey area within the National Petroleum Reserve-Alaska (NPR-A) is in the Arctic Coastal Plain of the North Slope of Alaska, approximately 90 miles (145 km) west of Prudhoe Bay. These lands were originally inhabited by various Alaska Native groups, including the Iñupiat people for thousands of years. In 1923, President Warren G. Harding established the Naval Petroleum Reserve No.4 (NPR-4) through an executive order, which brought this area under federal ownership without consultation or compensation to the Alaska Native peoples. In 1976, the Naval Petroleum Reserves Production Act renamed the area to the National Petroleum Reserve-Alaska and transferred the management of the reserve from the United States Navy to the United States Department of Interior, Bureau of Land Management. In recent years, there has been increased interest in developing the oil resources in the NPR-A, exemplified by projects such as the Willow Project. The NPR-A is approximately 24 million acres stretching across the North Slope of Alaska. The soil and vegetation survey area of the Willow area is approximately 500,000 acres on the Eastern most side of the NPR-A. 
+The survey area within the National Petroleum Reserve-Alaska (NPR-A) is in the Arctic Coastal Plain of the North Slope of Alaska, approximately 90 miles (145 km) west of Prudhoe Bay. These lands were originally inhabited by various Alaska Native groups, including the Inupiat people for thousands of years. In 1923, President Warren G. Harding established the Naval Petroleum Reserve No.4 (NPR-4) through an executive order, which brought this area under federal ownership without consultation or compensation to the Alaska Native peoples. In 1976, the Naval Petroleum Reserves Production Act renamed the area to the National Petroleum Reserve-Alaska and transferred the management of the reserve from the United States Navy to the United States Department of Interior, Bureau of Land Management. In recent years, there has been increased interest in developing the oil resources in the NPR-A, exemplified by projects such as the Willow Project. The NPR-A is approximately 24 million acres stretching across the North Slope of Alaska. The soil and vegetation survey area is approximately 500,000 acres on the Eastern most side of the NPR-A. 
 
 ![Fish Creek taken from R44 helicopter. Notice the progression of ice-wedge polygon development from the floodplains to uplands. ](_book/IMG_1982.JPG)
 
 ## Survey Purpose
 
-The primary purpose of the survey was to describe and map the soils and vegetation of the Willow area in the NPR-A. Area soils and vegetation were mapped at a scale of 1:24,000 and detailed description of the map units, soil types, and vegetation cover types were developed.
+The primary purpose of the survey was to describe and map the soils and vegetation of the Willow area in the NPR-A. Area soils and vegetation were mapped at a scale of 1:24,000 and detailed description of the map units, soil types, and vegetation cover types were developed. This data will be published on Web Soil Survey in 2025 and can be found here: https://websoilsurvey.nrcs.usda.gov/app/ 
 
 ## Acknowledgements
 
