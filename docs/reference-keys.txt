@@ -8,10 +8,8 @@ acknowledgements
 usage
 general-nature-of-the-area
 climate
-general-nature-of-the-area-1
-climate-1
-captioned-figures-and-tables
 field-work
+captioned-figures-and-tables
 footnotes-and-citations
 footnotes
 citations
@@ -30,4 +28,3 @@ create-a-function-to-reorder-months-from-oct-to-sep
 prepare-the-data-for-plotting
 calculate-average-cumulative-precipitation
 create-the-plot
-url-your-book-url-like-httpsbookdown.orgyihuibookdown

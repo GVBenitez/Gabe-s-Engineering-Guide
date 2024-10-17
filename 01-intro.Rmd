@@ -4,9 +4,10 @@ library(ggplot2)
 library(readr)
 library(dplyr)
 ```
-# General Nature of the Area
+# Environmental Setting
 
 ## Climate
+
 
 The Arctic Coastal Plain of Alaska is characterized by a harsh tundra climate, classified as ET in the Köppen system. This region experiences extreme temperature variations, with brutally cold winters where average temperatures often plummet below -15°F, and brief, cool summers barely reaching 50°F in July. The average annual temperature ranges from 8 to 14°F. The average freeze-free period is fewer than 5 days to 20 days. Freezing temperatures can occur in any month.
 

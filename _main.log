@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.9)  17 OCT 2024 08:09
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.9)  17 OCT 2024 08:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -761,24 +761,29 @@ Chapter 2.
 [10]
 Chapter 3.
 
-
-[11
-
-]
-Overfull \hbox (17.937pt too wide) in paragraph at lines 222--223
+Overfull \hbox (17.937pt too wide) in paragraph at lines 211--212
 []\TU/lmr/m/n/10 To label an un-numbered heading, use: \TU/lmtt/m/n/10 # Hello world {-#nice-label}
  []
 
 
-LaTeX Warning: Reference `cross' on page 12 undefined on input line 225.
+LaTeX Warning: Reference `cross' on page 11 undefined on input line 214.
 
 
-Underfull \hbox (badness 2512) in paragraph at lines 225--226
+Underfull \hbox (badness 2512) in paragraph at lines 214--215
 []\TU/lmr/m/n/10 Next, reference the labeled heading anywhere in the text using
  []
 
 File: _main_files/figure-latex/nice-fig-1.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/nice-fig-1.pdf>
+
+
+[11
+
+]
+Underfull \hbox (badness 1859) in paragraph at lines 284--285
+[]\TU/lmr/m/n/10 Add an unnumbered part: \TU/lmtt/m/n/10 # (PART\*) Act one {-} \TU/lmr/m/n/10 (followed by \TU/lmtt/m/n/10 # A
+ []
+
 
 
 [12]
@@ -789,11 +794,6 @@ File: _main_files/figure-latex/nice-fig-1.pdf Graphic file (type pdf)
 
 ]
 Chapter 4.
-
-Underfull \hbox (badness 1859) in paragraph at lines 300--301
-[]\TU/lmr/m/n/10 Add an unnumbered part: \TU/lmtt/m/n/10 # (PART\*) Act one {-} \TU/lmr/m/n/10 (followed by \TU/lmtt/m/n/10 # A
- []
-
 
 
 [15]
@@ -814,96 +814,101 @@ Chapter 6.
 
 [19]
 
-[20
-
-]
+[20]
 Chapter 7.
 
-
-[21]
-
-[22]
-Chapter 8.
-
-Underfull \hbox (badness 1565) in paragraph at lines 418--424
+Underfull \hbox (badness 1565) in paragraph at lines 402--408
 []\TU/lmr/m/n/10 month_order <- c(“Jan”, “Feb”, “Mar”, “Apr”, “May”, “Jun”, “Jul”,
  []
 
 
 
-[23
+[21
 
 ]
+
+[22
+
+]
+Chapter 8.
+
+Overfull \hbox (13.14003pt too wide) in paragraph at lines 412--415
+\TU/lmr/m/n/10 avg_temp <- data_long %>% group_by(Date) %>% summarise(AvgTemperature
+ []
+
+
+
+[23]
+
+
+Overfull \hbox (132.35013pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 24 \TU/lmr/m/sl/10 CHAPTER 8.  CALCULATE THE AVERAGE TEMPERATURE FOR EACH DAY ACROSS ALL YEARS
+ []
 
 [24
 
 ]
 Chapter 9.
 
-Overfull \hbox (13.14003pt too wide) in paragraph at lines 428--431
-\TU/lmr/m/n/10 avg_temp <- data_long %>% group_by(Date) %>% summarise(AvgTemperature
- []
-
-
-
-[25]
-
-
-Overfull \hbox (132.35013pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 26 \TU/lmr/m/sl/10 CHAPTER 9.  CALCULATE THE AVERAGE TEMPERATURE FOR EACH DAY ACROSS ALL YEARS
- []
-
-[26
-
-]
-Chapter 10.
-
-Overfull \hbox (90.75pt too wide) in paragraph at lines 473--473
+Overfull \hbox (90.75pt too wide) in paragraph at lines 457--457
 []\TU/lmtt/m/n/10 ## -- Column specification --------------------------------------------------------[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 473--473
+Overfull \hbox (85.5pt too wide) in paragraph at lines 457--457
 []\TU/lmtt/m/n/10 ## dbl (14): Water Year, Day, Oct, Nov, Dec, Jan, Feb, Mar, Apr, May, Jun, Jul,...[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 473--473
+Overfull \hbox (43.5pt too wide) in paragraph at lines 457--457
 []\TU/lmtt/m/n/10 ## i Use `spec()` to retrieve the full column specification for this data.[] 
  []
 
 
-Overfull \hbox (96.0pt too wide) in paragraph at lines 473--473
+Overfull \hbox (96.0pt too wide) in paragraph at lines 457--457
 []\TU/lmtt/m/n/10 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.[] 
  []
 
 
 
-[27]
-Underfull \vbox (badness 10000) detected at line 530
+[25]
+Underfull \vbox (badness 10000) detected at line 514
  []
 
 
-Underfull \vbox (badness 10000) detected at line 530
+Underfull \vbox (badness 10000) detected at line 514
  []
 
 
 
-[28]
-Overfull \hbox (75.0pt too wide) in paragraph at lines 535--535
+[26]
+Overfull \hbox (75.0pt too wide) in paragraph at lines 519--519
 []\TU/lmtt/m/n/10 ## Warning in geom_line(data = data_long, aes(x = Date, y = Temperature, color =[] 
  []
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 543.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 527.
 
-Underfull \hbox (badness 4108) in paragraph at lines 575--582
+Underfull \hbox (badness 4108) in paragraph at lines 559--566
 []\TU/lmr/m/n/10 data_long <- data_long %>% mutate( MonthNum = match(Month,
  []
 
 
 
+[27]
+
+[28
+
+]
+Chapter 10.
+
+
 [29]
+
+
+Overfull \hbox (58.94012pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 30 \TU/lmr/m/sl/10 CHAPTER 10.  CREATE A FUNCTION TO REORDER MONTHS FROM OCT TO SEP
+ []
 
 [30
 
@@ -913,11 +918,6 @@ Chapter 11.
 
 [31]
 
-
-Overfull \hbox (58.94012pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 32 \TU/lmr/m/sl/10 CHAPTER 11.  CREATE A FUNCTION TO REORDER MONTHS FROM OCT TO SEP
- []
-
 [32
 
 ]
@@ -926,32 +926,24 @@ Chapter 12.
 
 [33]
 
+
+Overfull \hbox (6.79672pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 34 \TU/lmr/m/sl/10 CHAPTER 12.  CALCULATE AVERAGE CUMULATIVE PRECIPITATION
+ []
+
 [34
 
 ]
 Chapter 13.
-
+(./_main.bbl
 
 [35]
 
-
-Overfull \hbox (6.79672pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 36 \TU/lmr/m/sl/10 CHAPTER 13.  CALCULATE AVERAGE CUMULATIVE PRECIPITATION
- []
-
 [36
-
-]
-Chapter 14.
-(./_main.bbl
-
-[37]
-
-[38
 
 ])
 
-[39] (./_main.aux)
+[37] (./_main.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-09-10>
@@ -961,12 +953,12 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 17697 strings out of 476233
- 324913 string characters out of 5785007
- 857866 words of memory out of 5000000
- 40014 multiletter control sequences out of 15000+600000
+ 17693 strings out of 476233
+ 324860 string characters out of 5785007
+ 857779 words of memory out of 5000000
+ 40010 multiletter control sequences out of 15000+600000
  564568 words of font info for 95 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  90i,8n,123p,1171b,468s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on _main.pdf (39 pages).
+Output written on _main.pdf (37 pages).
