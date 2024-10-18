@@ -18,11 +18,11 @@ captioned-figures-and-tables
 footnotes-and-citations
 footnotes
 citations
-blocks
+map-unit
 equations
 theorems-and-proofs
 callout-blocks
-sharing-your-book
+component
 publishing
 pages
 metadata-for-sharing
@@ -33,3 +33,4 @@ create-a-function-to-reorder-months-from-oct-to-sep
 prepare-the-data-for-plotting
 calculate-average-cumulative-precipitation
 create-the-plot
+url-your-book-url-like-httpsbookdown.orgyihuibookdown

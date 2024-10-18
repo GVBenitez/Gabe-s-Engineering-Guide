@@ -115,7 +115,7 @@ The primary purpose of the survey was to describe and map the soils and vegetati
 
 ## Acknowledgements
 
-This project would have never been possible without the expertise of the scientist, pilots, and the managers of this incredible area. Countless thanks to Tyler Annetts, Jessica Lene-Ashley, Phillip Barber, Luke Breneman, Krista Bryant, Brad Casar, Charolette Crowder, Sara Datson, Noah Hull, Ted Inman, Nic Jelinski, Jamin Johanson, Monica Kopp, Amy Li, Travis Nauman, Nathan Perry, Craig Prink, Nathan Roe, Stephanie Schmidt, Michael Sousa, Michael Singer, Mark Stott, Maddie Tucker.
+This project would have never been possible without the expertise of the scientist, pilots, and the managers of this incredible area. Countless thanks to Tyler Annetts, Jessica Lene-Ashley, Phillip Barber, Luke Breneman, Krista Bryant, Brad Casar, Charolette Crowder, Sara Datson, Noah Hull, Nic Jelinski, Jamin Johanson, Monica Kopp, Amy Li, Travis Nauman, Nathan Perry, Craig Prink, Nathan Roe, Stephanie Schmidt, Michael Sousa, Michael Singer, Mark Stott, Maddie Tucker.
 
 ## Usage 
 
