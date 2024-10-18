@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.9)  17 OCT 2024 09:17
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.9)  18 OCT 2024 08:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -761,15 +761,15 @@ Chapter 2.
 [10]
 Chapter 3.
 
-Overfull \hbox (17.937pt too wide) in paragraph at lines 211--212
+Overfull \hbox (17.937pt too wide) in paragraph at lines 221--222
 []\TU/lmr/m/n/10 To label an un-numbered heading, use: \TU/lmtt/m/n/10 # Hello world {-#nice-label}
  []
 
 
-LaTeX Warning: Reference `cross' on page 11 undefined on input line 214.
+LaTeX Warning: Reference `cross' on page 11 undefined on input line 224.
 
 
-Underfull \hbox (badness 2512) in paragraph at lines 214--215
+Underfull \hbox (badness 2512) in paragraph at lines 224--225
 []\TU/lmr/m/n/10 Next, reference the labeled heading anywhere in the text using
  []
 
@@ -780,7 +780,7 @@ File: _main_files/figure-latex/nice-fig-1.pdf Graphic file (type pdf)
 [11
 
 ]
-Underfull \hbox (badness 1859) in paragraph at lines 284--285
+Underfull \hbox (badness 1859) in paragraph at lines 294--295
 []\TU/lmr/m/n/10 Add an unnumbered part: \TU/lmtt/m/n/10 # (PART\*) Act one {-} \TU/lmr/m/n/10 (followed by \TU/lmtt/m/n/10 # A
  []
 
@@ -817,7 +817,7 @@ Chapter 6.
 [20]
 Chapter 7.
 
-Underfull \hbox (badness 1565) in paragraph at lines 402--408
+Underfull \hbox (badness 1565) in paragraph at lines 412--418
 []\TU/lmr/m/n/10 month_order <- c(“Jan”, “Feb”, “Mar”, “Apr”, “May”, “Jun”, “Jul”,
  []
 
@@ -832,7 +832,7 @@ Underfull \hbox (badness 1565) in paragraph at lines 402--408
 ]
 Chapter 8.
 
-Overfull \hbox (13.14003pt too wide) in paragraph at lines 412--415
+Overfull \hbox (13.14003pt too wide) in paragraph at lines 422--425
 \TU/lmr/m/n/10 avg_temp <- data_long %>% group_by(Date) %>% summarise(AvgTemperature
  []
 
@@ -850,46 +850,46 @@ Overfull \hbox (132.35013pt too wide) has occurred while \output is active
 ]
 Chapter 9.
 
-Overfull \hbox (90.75pt too wide) in paragraph at lines 457--457
+Overfull \hbox (90.75pt too wide) in paragraph at lines 467--467
 []\TU/lmtt/m/n/10 ## -- Column specification --------------------------------------------------------[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 457--457
+Overfull \hbox (85.5pt too wide) in paragraph at lines 467--467
 []\TU/lmtt/m/n/10 ## dbl (14): Water Year, Day, Oct, Nov, Dec, Jan, Feb, Mar, Apr, May, Jun, Jul,...[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 457--457
+Overfull \hbox (43.5pt too wide) in paragraph at lines 467--467
 []\TU/lmtt/m/n/10 ## i Use `spec()` to retrieve the full column specification for this data.[] 
  []
 
 
-Overfull \hbox (96.0pt too wide) in paragraph at lines 457--457
+Overfull \hbox (96.0pt too wide) in paragraph at lines 467--467
 []\TU/lmtt/m/n/10 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.[] 
  []
 
 
 
 [25]
-Underfull \vbox (badness 10000) detected at line 514
+Underfull \vbox (badness 10000) detected at line 524
  []
 
 
-Underfull \vbox (badness 10000) detected at line 514
+Underfull \vbox (badness 10000) detected at line 524
  []
 
 
 
 [26]
-Overfull \hbox (75.0pt too wide) in paragraph at lines 519--519
+Overfull \hbox (75.0pt too wide) in paragraph at lines 529--529
 []\TU/lmtt/m/n/10 ## Warning in geom_line(data = data_long, aes(x = Date, y = Temperature, color =[] 
  []
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 527.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 537.
 
-Underfull \hbox (badness 4108) in paragraph at lines 559--566
+Underfull \hbox (badness 4108) in paragraph at lines 569--576
 []\TU/lmr/m/n/10 data_long <- data_long %>% mutate( MonthNum = match(Month,
  []
 
@@ -953,10 +953,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 17693 strings out of 476233
- 324855 string characters out of 5785007
- 857774 words of memory out of 5000000
- 40010 multiletter control sequences out of 15000+600000
+ 17697 strings out of 476233
+ 324898 string characters out of 5785007
+ 857856 words of memory out of 5000000
+ 40014 multiletter control sequences out of 15000+600000
  564568 words of font info for 95 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  90i,8n,123p,1171b,468s stack positions out of 10000i,1000n,20000p,200000b,200000s
