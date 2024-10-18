@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.9)  18 OCT 2024 11:28
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.9)  18 OCT 2024 11:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -771,39 +771,23 @@ Underfull \hbox (badness 1917) in paragraph at lines 191--192
 [10]
 Chapter 3.
 
-Overfull \hbox (17.937pt too wide) in paragraph at lines 227--228
-[]\TU/lmr/m/n/10 To label an un-numbered heading, use: \TU/lmtt/m/n/10 # Hello world {-#nice-label}
- []
-
-
-LaTeX Warning: Reference `cross' on page 11 undefined on input line 230.
-
-
-Underfull \hbox (badness 2512) in paragraph at lines 230--231
-[]\TU/lmr/m/n/10 Next, reference the labeled heading anywhere in the text using
- []
-
-File: _main_files/figure-latex/nice-fig-1.pdf Graphic file (type pdf)
-<use _main_files/figure-latex/nice-fig-1.pdf>
-
 
 [11
 
 ]
-Underfull \hbox (badness 1859) in paragraph at lines 300--301
-[]\TU/lmr/m/n/10 Add an unnumbered part: \TU/lmtt/m/n/10 # (PART\*) Act one {-} \TU/lmr/m/n/10 (followed by \TU/lmtt/m/n/10 # A
- []
 
+[12
 
+]
+Chapter 4.
 
-[12]
 
 [13]
 
 [14
 
 ]
-Chapter 4.
+Chapter 5.
 
 
 [15]
@@ -811,36 +795,49 @@ Chapter 4.
 [16
 
 ]
-Chapter 5.
+Chapter 6.
 
 
 [17]
+Overfull \hbox (17.937pt too wide) in paragraph at lines 305--306
+[]\TU/lmr/m/n/10 To label an un-numbered heading, use: \TU/lmtt/m/n/10 # Hello world {-#nice-label}
+ []
 
-[18
 
-]
-Chapter 6.
+LaTeX Warning: Reference `cross' on page 18 undefined on input line 308.
+
+
+Underfull \hbox (badness 2512) in paragraph at lines 308--309
+[]\TU/lmr/m/n/10 Next, reference the labeled heading anywhere in the text using
+ []
+
+
+
+[18]
+File: _main_files/figure-latex/nice-fig-1.pdf Graphic file (type pdf)
+<use _main_files/figure-latex/nice-fig-1.pdf>
+
+Underfull \hbox (badness 1859) in paragraph at lines 378--379
+[]\TU/lmr/m/n/10 Add an unnumbered part: \TU/lmtt/m/n/10 # (PART\*) Act one {-} \TU/lmr/m/n/10 (followed by \TU/lmtt/m/n/10 # A
+ []
+
 
 
 [19]
 
 [20]
-Chapter 7.
-
 Underfull \hbox (badness 1565) in paragraph at lines 418--424
 []\TU/lmr/m/n/10 month_order <- c(“Jan”, “Feb”, “Mar”, “Apr”, “May”, “Jun”, “Jul”,
  []
 
 
 
-[21
-
-]
+[21]
 
 [22
 
 ]
-Chapter 8.
+Chapter 7.
 
 Overfull \hbox (13.14003pt too wide) in paragraph at lines 428--431
 \TU/lmr/m/n/10 avg_temp <- data_long %>% group_by(Date) %>% summarise(AvgTemperature
@@ -852,13 +849,13 @@ Overfull \hbox (13.14003pt too wide) in paragraph at lines 428--431
 
 
 Overfull \hbox (132.35013pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 24 \TU/lmr/m/sl/10 CHAPTER 8.  CALCULATE THE AVERAGE TEMPERATURE FOR EACH DAY ACROSS ALL YEARS
+\TU/lmr/m/n/10 24 \TU/lmr/m/sl/10 CHAPTER 7.  CALCULATE THE AVERAGE TEMPERATURE FOR EACH DAY ACROSS ALL YEARS
  []
 
 [24
 
 ]
-Chapter 9.
+Chapter 8.
 
 Overfull \hbox (90.75pt too wide) in paragraph at lines 473--473
 []\TU/lmtt/m/n/10 ## -- Column specification --------------------------------------------------------[] 
@@ -910,20 +907,20 @@ Underfull \hbox (badness 4108) in paragraph at lines 575--582
 [28
 
 ]
-Chapter 10.
+Chapter 9.
 
 
 [29]
 
 
-Overfull \hbox (58.94012pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 30 \TU/lmr/m/sl/10 CHAPTER 10.  CREATE A FUNCTION TO REORDER MONTHS FROM OCT TO SEP
+Overfull \hbox (53.94012pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 30 \TU/lmr/m/sl/10 CHAPTER 9.  CREATE A FUNCTION TO REORDER MONTHS FROM OCT TO SEP
  []
 
 [30
 
 ]
-Chapter 11.
+Chapter 10.
 
 
 [31]
@@ -931,20 +928,20 @@ Chapter 11.
 [32
 
 ]
-Chapter 12.
+Chapter 11.
 
 
 [33]
 
 
 Overfull \hbox (6.79672pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 34 \TU/lmr/m/sl/10 CHAPTER 12.  CALCULATE AVERAGE CUMULATIVE PRECIPITATION
+\TU/lmr/m/n/10 34 \TU/lmr/m/sl/10 CHAPTER 11.  CALCULATE AVERAGE CUMULATIVE PRECIPITATION
  []
 
 [34
 
 ]
-Chapter 13.
+Chapter 12.
 (./_main.bbl
 
 [35]
@@ -963,10 +960,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 17700 strings out of 476233
- 324955 string characters out of 5785007
- 857960 words of memory out of 5000000
- 40017 multiletter control sequences out of 15000+600000
+ 17704 strings out of 476233
+ 324976 string characters out of 5785007
+ 858023 words of memory out of 5000000
+ 40021 multiletter control sequences out of 15000+600000
  564568 words of font info for 95 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  90i,8n,123p,1171b,468s stack positions out of 10000i,1000n,20000p,200000b,200000s

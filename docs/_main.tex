@@ -165,7 +165,7 @@ The primary purpose of the survey was to describe and map the soils and vegetati
 \hypertarget{acknowledgements}{%
 \section{Acknowledgements}\label{acknowledgements}}
 
-This project would have never been possible without the expertise of the scientist, pilots, and the managers of this incredible area. Countless thanks to Tyler Annetts, Jessica Lene-Ashley, Phillip Barber, Luke Breneman, Krista Bryant, Brad Casar, Charolette Crowder, Sara Datson, Noah Hull, Ted Inman, Nic Jelinski, Jamin Johanson, Monica Kopp, Amy Li, Travis Nauman, Nathan Perry, Craig Prink, Nathan Roe, Stephanie Schmidt, Michael Sousa, Michael Singer, Mark Stott, Maddie Tucker.
+This project would have never been possible without the expertise of the scientist, pilots, and the managers of this incredible area. Countless thanks to Tyler Annetts, Jessica Lene-Ashley, Phillip Barber, Luke Breneman, Krista Bryant, Brad Casar, Charolette Crowder, Sara Datson, Noah Hull, Nic Jelinski, Jamin Johanson, Monica Kopp, Amy Li, Travis Nauman, Nathan Perry, Craig Prink, Nathan Roe, Stephanie Schmidt, Michael Sousa, Michael Singer, Mark Stott, Maddie Tucker.
 
 \hypertarget{usage}{%
 \section{Usage}\label{usage}}
@@ -212,6 +212,84 @@ Landscape/Landforms: Insert landscape diagram of area
 \chapter{Field Work}\label{field-work}}
 
 For this project getting to the site with enough gear to be self-sustainable was a logistical challenge. Thankfully the BLM has a remote camp called Inigok Field Station.
+
+\hypertarget{map-units}{%
+\chapter{Map Units}\label{map-units}}
+
+\hypertarget{uplands-with-dunes}{%
+\section{Uplands with Dunes}\label{uplands-with-dunes}}
+
+These areas are located west of Fish creek in the survey boundaries. They have longitudinal dunes that generally are oriented southwest to northeast.
+
+\hypertarget{components}{%
+\chapter{Components}\label{components}}
+
+\hypertarget{inigok}{%
+\section{Inigok}\label{inigok}}
+
+\hypertarget{pingok}{%
+\section{Pingok}\label{pingok}}
+
+\hypertarget{sagwon}{%
+\section{Sagwon}\label{sagwon}}
+
+\hypertarget{useful-code}{%
+\chapter{useful code}\label{useful-code}}
+
+this is how you commit and push stuff in terminal
+git add .
+
+git commit -m ``commit message''
+
+git push
+
+ctrl + Alt + i = insert r script
+echo = false means the scrubs dont see code
+
+\hypertarget{footnotes}{%
+\section{Footnotes}\label{footnotes}}
+
+Footnotes are put inside the square brackets after a caret \texttt{\^{}{[}{]}}. Like this one \footnote{This is a footnote.}.
+
+\hypertarget{citations}{%
+\section{Citations}\label{citations}}
+
+Reference items in your bibliography file(s) using \texttt{@key}.
+
+For example, we are using the \textbf{bookdown} package \citep{R-bookdown} (check out the last code chunk in index.Rmd to see how this citation key was added) in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015} (this citation was added manually in an external file book.bib).
+Note that the \texttt{.bib} files need to be listed in the index.Rmd with the YAML \texttt{bibliography} key.
+
+The RStudio Visual Markdown Editor can also make it easier to insert citations: \url{https://rstudio.github.io/visual-markdown-editing/\#/citations}
+
+\hypertarget{equations}{%
+\section{Equations}\label{equations}}
+
+Here is an equation.
+
+\begin{equation} 
+  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
+  \label{eq:binom}
+\end{equation}
+
+You may refer to using \texttt{\textbackslash{}@ref(eq:binom)}, like see Equation \eqref{eq:binom}.
+
+\hypertarget{theorems-and-proofs}{%
+\section{Theorems and proofs}\label{theorems-and-proofs}}
+
+Labeled theorems can be referenced in text using \texttt{\textbackslash{}@ref(thm:tri)}, for example, check out this smart theorem \ref{thm:tri}.
+
+\begin{theorem}
+\protect\hypertarget{thm:tri}{}\label{thm:tri}For a right triangle, if \(c\) denotes the \emph{length} of the hypotenuse
+and \(a\) and \(b\) denote the lengths of the \textbf{other} two sides, we have
+\[a^2 + b^2 = c^2\]
+\end{theorem}
+
+Read more here \url{https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html}.
+
+\hypertarget{callout-blocks}{%
+\section{Callout blocks}\label{callout-blocks}}
+
+The R Markdown Cookbook provides more help on how to use custom blocks to design your own callouts: \url{https://bookdown.org/yihui/rmarkdown-cookbook/custom-blocks.html}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -301,63 +379,6 @@ Add an unnumbered part: \texttt{\#\ (PART\textbackslash{}*)\ Act\ one\ \{-\}} (f
 
 Add an appendix as a special kind of un-numbered part: \texttt{\#\ (APPENDIX)\ Other\ stuff\ \{-\}} (followed by \texttt{\#\ A\ chapter}). Chapters in an appendix are prepended with letters instead of numbers.
 
-\hypertarget{footnotes-and-citations}{%
-\chapter{Footnotes and citations}\label{footnotes-and-citations}}
-
-\hypertarget{footnotes}{%
-\section{Footnotes}\label{footnotes}}
-
-Footnotes are put inside the square brackets after a caret \texttt{\^{}{[}{]}}. Like this one \footnote{This is a footnote.}.
-
-\hypertarget{citations}{%
-\section{Citations}\label{citations}}
-
-Reference items in your bibliography file(s) using \texttt{@key}.
-
-For example, we are using the \textbf{bookdown} package \citep{R-bookdown} (check out the last code chunk in index.Rmd to see how this citation key was added) in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015} (this citation was added manually in an external file book.bib).
-Note that the \texttt{.bib} files need to be listed in the index.Rmd with the YAML \texttt{bibliography} key.
-
-The RStudio Visual Markdown Editor can also make it easier to insert citations: \url{https://rstudio.github.io/visual-markdown-editing/\#/citations}
-
-\hypertarget{map-unit}{%
-\chapter{Map Unit}\label{map-unit}}
-
-\hypertarget{equations}{%
-\section{Equations}\label{equations}}
-
-Here is an equation.
-
-\begin{equation} 
-  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
-  \label{eq:binom}
-\end{equation}
-
-You may refer to using \texttt{\textbackslash{}@ref(eq:binom)}, like see Equation \eqref{eq:binom}.
-
-\hypertarget{theorems-and-proofs}{%
-\section{Theorems and proofs}\label{theorems-and-proofs}}
-
-Labeled theorems can be referenced in text using \texttt{\textbackslash{}@ref(thm:tri)}, for example, check out this smart theorem \ref{thm:tri}.
-
-\begin{theorem}
-\protect\hypertarget{thm:tri}{}\label{thm:tri}For a right triangle, if \(c\) denotes the \emph{length} of the hypotenuse
-and \(a\) and \(b\) denote the lengths of the \textbf{other} two sides, we have
-\[a^2 + b^2 = c^2\]
-\end{theorem}
-
-Read more here \url{https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html}.
-
-\hypertarget{callout-blocks}{%
-\section{Callout blocks}\label{callout-blocks}}
-
-The R Markdown Cookbook provides more help on how to use custom blocks to design your own callouts: \url{https://bookdown.org/yihui/rmarkdown-cookbook/custom-blocks.html}
-
-\hypertarget{component}{%
-\chapter{Component}\label{component}}
-
-\hypertarget{publishing}{%
-\section{Publishing}\label{publishing}}
-
 HTML books can be published online, see: \url{https://bookdown.org/yihui/bookdown/publishing.html}
 
 \hypertarget{pages}{%
@@ -377,27 +398,6 @@ Specify your book's source repository on GitHub using the \texttt{edit} key unde
 Read more about the features of this output format here:
 
 \url{https://pkgs.rstudio.com/bookdown/reference/gitbook.html}
-
-Or use:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{?bookdown}\SpecialCharTok{::}\NormalTok{gitbook}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{useful-code}{%
-\chapter{useful code}\label{useful-code}}
-
-this is how you commit and push stuff in terminal
-git add .
-
-git commit -m ``commit message''
-
-git push
-
-ctrl + Alt + i = insert r script
-echo = false means the scrubs dont see code
 
 library(tidyr)
 library(ggplot2)

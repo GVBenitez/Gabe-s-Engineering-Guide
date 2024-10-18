@@ -1,5 +1,19 @@
 # Map Units
 
+## River Valleys with Point Bars 
+
+## River Valleys without Point Bars
+
 ## Uplands with Dunes
 
 These areas are located west of Fish creek in the survey boundaries. They have longitudinal dunes that generally are oriented southwest to northeast.
+
+
+## Uplands without Dunes
+
+These are are located east of Fish Creek in the survey boundaries. 
+
+## Ice-Rich Lake Drain
+
+## Ice-Poor Lake Drain
+
