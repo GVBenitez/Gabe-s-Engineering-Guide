@@ -1,3 +1,6 @@
+fig:unnamed-chunk-3
+fig:unnamed-chunk-4
+fig:unnamed-chunk-5
 fig:nice-fig
 tab:nice-tab
 eq:binom
@@ -30,6 +33,3 @@ create-a-function-to-reorder-months-from-oct-to-sep
 prepare-the-data-for-plotting
 calculate-average-cumulative-precipitation
 create-the-plot
-fig:unnamed-chunk-2
-url-your-book-url-like-httpsbookdown.orgyihuibookdown
-fig:unnamed-chunk-3
