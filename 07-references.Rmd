@@ -1,9 +1,4 @@
-`r if (knitr::is_html_output()) '
-# References {-}
-'`
-# useful code
-
-
+# References
 
 this is how you commit and push stuff in terminal
 git add .

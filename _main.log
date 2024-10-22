@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.9)  18 OCT 2024 11:48
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.10.9)  18 OCT 2024 13:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -799,15 +799,15 @@ Chapter 6.
 
 
 [17]
-Overfull \hbox (17.937pt too wide) in paragraph at lines 305--306
+Overfull \hbox (17.937pt too wide) in paragraph at lines 322--323
 []\TU/lmr/m/n/10 To label an un-numbered heading, use: \TU/lmtt/m/n/10 # Hello world {-#nice-label}
  []
 
 
-LaTeX Warning: Reference `cross' on page 18 undefined on input line 308.
+LaTeX Warning: Reference `cross' on page 18 undefined on input line 325.
 
 
-Underfull \hbox (badness 2512) in paragraph at lines 308--309
+Underfull \hbox (badness 2512) in paragraph at lines 325--326
 []\TU/lmr/m/n/10 Next, reference the labeled heading anywhere in the text using
  []
 
@@ -817,7 +817,7 @@ Underfull \hbox (badness 2512) in paragraph at lines 308--309
 File: _main_files/figure-latex/nice-fig-1.pdf Graphic file (type pdf)
 <use _main_files/figure-latex/nice-fig-1.pdf>
 
-Underfull \hbox (badness 1859) in paragraph at lines 378--379
+Underfull \hbox (badness 1859) in paragraph at lines 395--396
 []\TU/lmr/m/n/10 Add an unnumbered part: \TU/lmtt/m/n/10 # (PART\*) Act one {-} \TU/lmr/m/n/10 (followed by \TU/lmtt/m/n/10 # A
  []
 
@@ -826,7 +826,7 @@ Underfull \hbox (badness 1859) in paragraph at lines 378--379
 [19]
 
 [20]
-Underfull \hbox (badness 1565) in paragraph at lines 418--424
+Underfull \hbox (badness 1565) in paragraph at lines 435--441
 []\TU/lmr/m/n/10 month_order <- c(“Jan”, “Feb”, “Mar”, “Apr”, “May”, “Jun”, “Jul”,
  []
 
@@ -839,7 +839,7 @@ Underfull \hbox (badness 1565) in paragraph at lines 418--424
 ]
 Chapter 7.
 
-Overfull \hbox (13.14003pt too wide) in paragraph at lines 428--431
+Overfull \hbox (13.14003pt too wide) in paragraph at lines 445--448
 \TU/lmr/m/n/10 avg_temp <- data_long %>% group_by(Date) %>% summarise(AvgTemperature
  []
 
@@ -857,46 +857,46 @@ Overfull \hbox (132.35013pt too wide) has occurred while \output is active
 ]
 Chapter 8.
 
-Overfull \hbox (90.75pt too wide) in paragraph at lines 473--473
+Overfull \hbox (90.75pt too wide) in paragraph at lines 490--490
 []\TU/lmtt/m/n/10 ## -- Column specification --------------------------------------------------------[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 473--473
+Overfull \hbox (85.5pt too wide) in paragraph at lines 490--490
 []\TU/lmtt/m/n/10 ## dbl (14): Water Year, Day, Oct, Nov, Dec, Jan, Feb, Mar, Apr, May, Jun, Jul,...[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 473--473
+Overfull \hbox (43.5pt too wide) in paragraph at lines 490--490
 []\TU/lmtt/m/n/10 ## i Use `spec()` to retrieve the full column specification for this data.[] 
  []
 
 
-Overfull \hbox (96.0pt too wide) in paragraph at lines 473--473
+Overfull \hbox (96.0pt too wide) in paragraph at lines 490--490
 []\TU/lmtt/m/n/10 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.[] 
  []
 
 
 
 [25]
-Underfull \vbox (badness 10000) detected at line 530
+Underfull \vbox (badness 10000) detected at line 547
  []
 
 
-Underfull \vbox (badness 10000) detected at line 530
+Underfull \vbox (badness 10000) detected at line 547
  []
 
 
 
 [26]
-Overfull \hbox (75.0pt too wide) in paragraph at lines 535--535
+Overfull \hbox (75.0pt too wide) in paragraph at lines 552--552
 []\TU/lmtt/m/n/10 ## Warning in geom_line(data = data_long, aes(x = Date, y = Temperature, color =[] 
  []
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 543.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 560.
 
-Underfull \hbox (badness 4108) in paragraph at lines 575--582
+Underfull \hbox (badness 4108) in paragraph at lines 592--599
 []\TU/lmr/m/n/10 data_long <- data_long %>% mutate( MonthNum = match(Month,
  []
 
@@ -960,10 +960,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 17704 strings out of 476233
- 324976 string characters out of 5785007
- 858023 words of memory out of 5000000
- 40021 multiletter control sequences out of 15000+600000
+ 17714 strings out of 476233
+ 325135 string characters out of 5785007
+ 858282 words of memory out of 5000000
+ 40031 multiletter control sequences out of 15000+600000
  564568 words of font info for 95 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  90i,8n,123p,1171b,468s stack positions out of 10000i,1000n,20000p,200000b,200000s
