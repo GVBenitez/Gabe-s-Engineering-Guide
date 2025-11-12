@@ -6,11 +6,13 @@ title: "Gabe's Guide to Engineering"
 author: "Gabe Benitez"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
+output:
+  bookdown::bs4_book: default   # or bookdown::gitbook
 documentclass: book
 bibliography:
-- book.bib
-- packages.bib
-description: |
+  - book.bib
+  - packages.bib
+description: >
   This is a living document that is meant to host workflows that I do on engineering projects.
 link-citations: true
 github-repo: "rstudio/bookdown-demo"
