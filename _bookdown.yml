@@ -1,7 +1,9 @@
-output_dir: "docs"
+ook_filename: "AK760_Willow"   # any name; affects merged outputs
+output_dir: "docs"              # good for GitHub Pages
 delete_merged_file: true
 language:
   ui:
-    chapter_name: ""
-    
-    
+    chapter_name: ""            # hides "Chapter 1" prefix
+
+rmd_files:                       # ORDER MATTERS
+  - index.Rmd

@@ -1,126 +1,23 @@
+# Introduction {#intro}
+
+
 --- 
-title: "Soil and Vegetation Survey of the Willow National Petroleum Reserve-Alaska"
-author: "Gabriel Benitez, Nathan Roe, and Blaine Spellman"
+title: "Gabe's Guide to Engineering"
+author: "Gabe Benitez"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-always_allow_html: true
 documentclass: book
-bibliography: [book.bib, packages.bib]
-# url: your book url like https://bookdown.org/yihui/bookdown
-# cover-image: path to the social sharing image like images/cover.jpg
+bibliography:
+- book.bib
+- packages.bib
 description: |
-  This is an overview of the soil and vegetation survey of the Willow NPR-A conducted via the NRCS in conjunction with the BLM.
-link-citations: yes
-github-repo: rstudio/bookdown-demo
+  This is a living document that is meant to host workflows that I do on engineering projects.
+link-citations: true
+github-repo: "rstudio/bookdown-demo"
 ---
 
-# Interactive Project Map
+I am a Junior Water Resources Engineer-in-Training (EIT) with a goal of developing a living document to share the workflows I use on engineering projects. This guide also serves as a record of lessons learned and opportunities for improvement to help refine my processes over time.
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE}
-library(sf)
-library(leaflet)
-library(osmdata)
-library(dplyr)
-library(jsonlite)
-library(htmlwidgets)
+## Disclaimer 
 
-quietly <- function(x) {
-  sink(tempfile())
-  on.exit(sink())
-  invisible(force(x))
-}
-
-polygon <- quietly(st_read("_book/AK760_project_boundaries.shp"))
-
-polygon <- st_transform(polygon, 4326)
-
-polygon1 <- quietly(st_read("_book/NPRA_Boundary.shp"))
-
-polygon1 <- st_transform(polygon1, 4326)
-
-combined_bbox <- st_bbox(c(st_bbox(polygon), st_bbox(polygon1)))
-
-towns <- data.frame(
-  name = c("Anchorage", "Fairbanks", "Prudhoe Bay", "Nuiqsut", "Umiat", "Utqiaġvik", "Juneau", "Inigok Field Station"),
-  lat = c(61.2176, 64.8378, 70.2556, 70.2175, 69.3672, 71.2906, 58.3019, 70.0030),
-  lon = c(-149.8997, -147.7164, -148.3384, -150.9764, -152.1394, -156.7886, -134.4197, -153.0866),
-  zoom_threshold = c(0, 0, 0, 6, 6, 6, 0, 0)  # 0 means always visible, 6 means visible at zoom level 6 and above
-)
-
-whiteDotIcon <- makeIcon(
-  iconUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ccircle cx='5' cy='5' r='5' fill='white'/%3E%3C/svg%3E",
-  iconWidth = 5, iconHeight = 5,
-  iconAnchorX = 5, iconAnchorY = 5
-)
-
-map <- leaflet() %>%
-  addProviderTiles(providers$Esri.WorldImagery, group = "Satellite") %>%
-  addPolygons(data = polygon,
-              fillOpacity = 0,  
-              color = "red",  
-              weight = 2) %>%
-  addPolygons(data = polygon1,
-              fillOpacity = 0,
-              color = "black",
-              weight = 2)
-
-# Add markers and labels
-for(i in 1:nrow(towns)) {
-  map <- map %>%
-    addMarkers(lng = towns$lon[i], lat = towns$lat[i], 
-               icon = whiteDotIcon,
-               group = paste0("marker_", towns$name[i]),
-               options = markerOptions(opacity = ifelse(towns$zoom_threshold[i] == 0, 1, 0))) %>%
-    addLabelOnlyMarkers(lng = towns$lon[i], lat = towns$lat[i],
-                        label = towns$name[i],
-                        labelOptions = labelOptions(noHide = T, 
-                                                    direction = "top", 
-                                                    textsize = "12px", 
-                                                    textOnly = TRUE, 
-                                                    offset = c(0, -6),
-                                                    opacity = ifelse(towns$zoom_threshold[i] == 0, 1, 0),
-                                                    style = list(
-                                                      "color" = "white", 
-                                                      "font-weight" = "bold", 
-                                                      "text-shadow" = "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
-                                                      "padding" = "1px",
-                                                      "line-height" = "1"
-                                                    )),
-                        group = paste0("label_", towns$name[i]))
-}
-
-# Add legend and set view
-map <- map %>%
-  addLegend(
-     position = "bottomright",
-    colors = c("red", "black"),
-    labels = c("Survey Boundary", "NPR-A Boundary"),
-    opacity = 1,
-    title = "Legend"
-  ) %>%
-  setView(lng = -150, lat = 64, zoom = 3.5)
-
-map
-
-```
-## Introduction
-
-The survey area within the National Petroleum Reserve-Alaska (NPR-A) is in the Arctic Coastal Plain of the North Slope of Alaska, approximately 90 miles (145 km) west of Prudhoe Bay. These lands were originally inhabited by various Alaska Native groups, including the Inupiat people for thousands of years. In 1923, President Warren G. Harding established the Naval Petroleum Reserve No.4 (NPR-4) through an executive order, which brought this area under federal ownership without consultation or compensation to the Alaska Native peoples. In 1976, the Naval Petroleum Reserves Production Act renamed the area to the National Petroleum Reserve-Alaska and transferred the management of the reserve from the United States Navy to the United States Department of Interior, Bureau of Land Management. In recent years, there has been increased interest in developing the oil resources in the NPR-A, exemplified by projects such as the Willow Project. The NPR-A is approximately 24 million acres stretching across the North Slope of Alaska. The soil and vegetation survey area is approximately 500,000 acres on the Eastern most side of the NPR-A. 
-
-![Figure 1.1: Fish Creek taken from R44 helicopter. Notice the progression of ice-wedge polygon development from the floodplains to uplands. ](_book/IMG_1982.JPG)
-
-## Survey Purpose
-
-The primary purpose of the survey was to describe and map the soils and vegetation of the Willow area in the NPR-A. Area soils and vegetation were mapped at a scale of 1:24,000 and detailed description of the map units, soil types, and vegetation cover types were developed. This data will be published on Web Soil Survey in 2025 and can be found here: https://websoilsurvey.nrcs.usda.gov/app/ 
-
-## Acknowledgements
-
-This project would have never been possible without the expertise of the scientist, pilots, and the managers of this incredible area. Countless thanks to Tyler Annetts, Jessica Lene-Ashley, Phillip Barber, Luke Breneman, Krista Bryant, Brad Casar, Charolette Crowder, Sara Datson, Noah Hull, Nic Jelinski, Jamin Johanson, Monica Kopp, Amy Li, Travis Nauman, Nathan Perry, Craig Prink, Nathan Roe, Stephanie Schmidt, Michael Sousa, Michael Singer, Mark Stott, Maddie Tucker.
-
-## Usage 
-
-This survey was a cooperative effort of the United States Department of Agriculture, Natural Resources Conservation Service (NRCS) and the United States Department of Interior, Bureau of Land Management (BLM). NRCS was responsible for survey design and methodology, data collection and analysis, and this report. Fieldwork was completed in July and August of ’21, ’23, and ‘24. Soil names and descriptions were approved in 2024. Unless indicated otherwise, maps and supporting documentation in this report refer to conditions in the survey area in 2024.
-
-Maps in this report may be copied without permission. However, enlargement of these maps could cause misunderstanding of the detail of mapping. If enlarged, maps do not show the small areas of contrasting soils and vegetation that could gave been shown at a larger scale.
-
-All programs and services of the Natural Resources Conservation Service and the Bureau of Land Management are offered on a nondiscriminatory basis, without regard to race, color, national origin, gender, religion, age, disability, political beliefs, sexual orientation, marital or family status.
+The information and workflows in this book are provided for general educational and informational purposes only. I make no warranties about their completeness, reliability, or accuracy. Use of these methods is at your own risk. I am not liable for any loss, damage, or injury resulting from the application of these workflows.

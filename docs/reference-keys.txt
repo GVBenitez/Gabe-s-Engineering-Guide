@@ -42,3 +42,5 @@ calculate-average-cumulative-precipitation
 create-the-plot
 fig:unnamed-chunk-2
 url-your-book-url-like-httpsbookdown.orgyihuibookdown
+disclaimer
+intro
