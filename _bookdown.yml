@@ -1,4 +1,4 @@
-ook_filename: "AK760_Willow"   # any name; affects merged outputs
+ook_filename: "Gabes Guide to Engineering"   # any name; affects merged outputs
 output_dir: "docs"              # good for GitHub Pages
 delete_merged_file: true
 language:
