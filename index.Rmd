@@ -1,6 +1,3 @@
-# Introduction {#intro}
-
-
 --- 
 title: "Gabe's Guide to Engineering"
 author: "Gabe Benitez"
@@ -17,6 +14,7 @@ description: >
 link-citations: true
 github-repo: "rstudio/bookdown-demo"
 ---
+# Introduction {#intro}
 
 I am a Junior Water Resources Engineer-in-Training (EIT) with a goal of developing a living document to share the workflows I use on engineering projects. This guide also serves as a record of lessons learned and opportunities for improvement to help refine my processes over time.
 
