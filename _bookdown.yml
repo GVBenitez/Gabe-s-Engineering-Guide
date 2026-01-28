@@ -7,3 +7,5 @@ language:
 
 rmd_files:                       # ORDER MATTERS
   - index.Rmd
+  - 01-intro.Rmd
+

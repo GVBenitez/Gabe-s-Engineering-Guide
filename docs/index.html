@@ -23,7 +23,7 @@
 <meta name="author" content="Gabe Benitez" />
 
 
-<meta name="date" content="2025-11-12" />
+<meta name="date" content="2026-01-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 
-
+<link rel="next" href="fish-passage-culvert-analysis.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -84,10 +84,15 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="#intro"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="#about-me"><i class="fa fa-check"></i><b>1.1</b> About me</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="#disclaimer"><i class="fa fa-check"></i><b>1.2</b> Disclaimer</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#about-me"><i class="fa fa-check"></i><b>1.1</b> About me</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#disclaimer"><i class="fa fa-check"></i><b>1.2</b> Disclaimer</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="fish-passage-culvert-analysis.html"><a href="fish-passage-culvert-analysis.html"><i class="fa fa-check"></i><b>2</b> Fish Passage Culvert Analysis</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="fish-passage-culvert-analysis.html"><a href="fish-passage-culvert-analysis.html#step-1-define-drainage-basin"><i class="fa fa-check"></i><b>2.1</b> Step 1 Define Drainage Basin</a></li>
+<li class="chapter" data-level="2.2" data-path="fish-passage-culvert-analysis.html"><a href="fish-passage-culvert-analysis.html#step-2-determine-2-year-24-hour-peak-flow"><i class="fa fa-check"></i><b>2.2</b> Step 2: Determine 2-year 24-hour Peak Flow</a></li>
 </ul></li>
 </ul>
 
@@ -109,13 +114,13 @@
 <div id="header">
 <h1 class="title">Gabe’s Guide to Engineering</h1>
 <p class="author"><em>Gabe Benitez</em></p>
-<p class="date"><em>2025-11-12</em></p>
+<p class="date"><em>2026-01-28</em></p>
 </div>
 <div id="intro" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Introduction<a href="#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<h1><span class="header-section-number">1</span> Introduction<a href="index.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>My name is Gabe Benitez and I am a Water Resources Engineer-in-Training (EIT) with a goal of developing a living document to share the workflows I use on engineering projects. This guide also serves as a record of lessons learned and opportunities for improvement to help refine my processes over time.</p>
 <div id="about-me" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> About me<a href="#about-me" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">1.1</span> About me<a href="index.html#about-me" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="images/gabe-hcp1-color.jpg" style="margin-bottom: 1em;" width="400" /></p>
 <p>I grew up in Anoka, Minnesota, and earned my Bachelor of Science in Environmental Sciences, Policy, and Management with a minor in Soil Science from the University of Minnesota Twin Cities. My undergraduate studies focused on landscape-scale processes, particularly pedogenesis—the formation and development of soils. During this time, I was an active member and captain of the University of Minnesota Soil Judging Team from 2017 to 2020. More information about the team can be found at <a href="https://umnsoilsteam.blogspot.com/" class="uri">https://umnsoilsteam.blogspot.com/</a>
 .</p>
@@ -124,11 +129,11 @@
 .</p>
 <p>Following my master’s degree, I took a break from computer-based research and joined the Natural Resources Conservation Service (NRCS) as a Soil Scientist, conducting initial soil mapping across the great state of Alaska. This work brought me to many incredible places, including the Copper River Basin, Yukon-Kuskokwim Delta, Arctic Coastal Plain, and many locations in between. After three rewarding years with the federal government, a change in administration prompted me to transition out of the public sector.</p>
 <p>Today, I am continuing my professional journey as an engineer—bringing together my background in earth sciences and engineering to solve complex environmental and infrastructure challenges.</p>
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-ce9f6673bb6a0f4a0e5b" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-ce9f6673bb6a0f4a0e5b">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["Esri.WorldImagery",null,"Imagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addProviderTiles","args":["OpenStreetMap",null,"Street Map",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addLayersControl","args":[["Imagery","Street Map"],[],{"collapsed":false,"autoZIndex":true,"position":"topright"}]},{"method":"addCircleMarkers","args":[[45.1978,44.975,41.7377,61.600803,62.0405,62.1055,70.00383100000001],[-93.38720000000001,-93.23528,-111.8087,-149.125259,-163.2178,-145.5412,-153.077568],7,null,null,{"interactive":true,"className":"","stroke":true,"color":"white","weight":2,"opacity":1,"fill":true,"fillColor":"red","fillOpacity":0.8},null,null,["<b>Anoka, Minnesota<\/b><br/>45.1978, -93.3872","<b>University of Minnesota<\/b><br/>44.9750, -93.2353","<b>Utah State University<\/b><br/>41.7377, -111.8087","<b>Palmer, Alaska<\/b><br/>61.6008, -149.1253","<b>St. Mary's, Alaska<\/b><br/>62.0405, -163.2178","<b>Glennallen, Alaska<\/b><br/>62.1055, -145.5412","<b>Inigok Field Station<\/b><br/>70.0038, -153.0776"],null,["Anoka, Minnesota","University of Minnesota","Utah State University","Palmer, Alaska","St. Mary's, Alaska","Glennallen, Alaska","Inigok Field Station"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]}],"limits":{"lat":[41.7377,70.00383100000001],"lng":[-163.2178,-93.23528]},"fitBounds":[41.7377,-163.2178,70.00383100000001,-93.23528,[]]},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-d968df206d9fd39a1f77" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-d968df206d9fd39a1f77">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["Esri.WorldImagery",null,"Imagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addProviderTiles","args":["OpenStreetMap",null,"Street Map",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addLayersControl","args":[["Imagery","Street Map"],[],{"collapsed":false,"autoZIndex":true,"position":"topright"}]},{"method":"addCircleMarkers","args":[[45.1978,44.975,41.7377,61.600803,62.0405,62.1055,70.00383100000001],[-93.38720000000001,-93.23528,-111.8087,-149.125259,-163.2178,-145.5412,-153.077568],7,null,null,{"interactive":true,"className":"","stroke":true,"color":"white","weight":2,"opacity":1,"fill":true,"fillColor":"red","fillOpacity":0.8},null,null,["<b>Anoka, Minnesota<\/b><br/>45.1978, -93.3872","<b>University of Minnesota<\/b><br/>44.9750, -93.2353","<b>Utah State University<\/b><br/>41.7377, -111.8087","<b>Palmer, Alaska<\/b><br/>61.6008, -149.1253","<b>St. Mary's, Alaska<\/b><br/>62.0405, -163.2178","<b>Glennallen, Alaska<\/b><br/>62.1055, -145.5412","<b>Inigok Field Station<\/b><br/>70.0038, -153.0776"],null,["Anoka, Minnesota","University of Minnesota","Utah State University","Palmer, Alaska","St. Mary's, Alaska","Glennallen, Alaska","Inigok Field Station"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]}],"limits":{"lat":[41.7377,70.00383100000001],"lng":[-163.2178,-93.23528]},"fitBounds":[41.7377,-163.2178,70.00383100000001,-93.23528,[]]},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="disclaimer" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Disclaimer<a href="#disclaimer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">1.2</span> Disclaimer<a href="index.html#disclaimer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The information and workflows in this book are provided for general educational and informational purposes only. I make no warranties about their completeness, reliability, or accuracy. Use of these methods is at your own risk. I am not liable for any loss, damage, or injury resulting from the application of these workflows.</p>
 
 </div>
@@ -139,7 +144,7 @@
         </div>
       </div>
 
-
+<a href="fish-passage-culvert-analysis.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

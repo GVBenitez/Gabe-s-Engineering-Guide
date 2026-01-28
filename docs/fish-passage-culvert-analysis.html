@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Fish Passage Culvert Analysis | Gabe’s Guide to Engineering</title>
+  <meta name="description" content="This is a living document that is meant to host workflows that I do on engineering projects." />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Fish Passage Culvert Analysis | Gabe’s Guide to Engineering" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a living document that is meant to host workflows that I do on engineering projects." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Fish Passage Culvert Analysis | Gabe’s Guide to Engineering" />
+  
+  <meta name="twitter:description" content="This is a living document that is meant to host workflows that I do on engineering projects." />
+  
+
+<meta name="author" content="Gabe Benitez" />
+
+
+<meta name="date" content="2026-01-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#about-me"><i class="fa fa-check"></i><b>1.1</b> About me</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#disclaimer"><i class="fa fa-check"></i><b>1.2</b> Disclaimer</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="fish-passage-culvert-analysis.html"><a href="fish-passage-culvert-analysis.html"><i class="fa fa-check"></i><b>2</b> Fish Passage Culvert Analysis</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="fish-passage-culvert-analysis.html"><a href="fish-passage-culvert-analysis.html#step-1-define-drainage-basin"><i class="fa fa-check"></i><b>2.1</b> Step 1 Define Drainage Basin</a></li>
+<li class="chapter" data-level="2.2" data-path="fish-passage-culvert-analysis.html"><a href="fish-passage-culvert-analysis.html#step-2-determine-2-year-24-hour-peak-flow"><i class="fa fa-check"></i><b>2.2</b> Step 2: Determine 2-year 24-hour Peak Flow</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Gabe’s Guide to Engineering</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="fish-passage-culvert-analysis" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Fish Passage Culvert Analysis<a href="fish-passage-culvert-analysis.html#fish-passage-culvert-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>As a first order analysis to determine if an existing culvert is sufficient for fish passage this is the workflow that I have performed.</p>
+<div id="step-1-define-drainage-basin" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Step 1 Define Drainage Basin<a href="fish-passage-culvert-analysis.html#step-1-define-drainage-basin" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For this project I used the 2019 USGS 3DEP MatSu Borough 1-meter Lidar data set. This data can be downloaded from “<a href="https://prd-tnm.s3.amazonaws.com/index.html?prefix=StagedProducts/Elevation/OPR/Projects/AK_MatSuBorough_2019_B19/AK_MatSuBorough_B1_2019/TIFF/" class="uri">https://prd-tnm.s3.amazonaws.com/index.html?prefix=StagedProducts/Elevation/OPR/Projects/AK_MatSuBorough_2019_B19/AK_MatSuBorough_B1_2019/TIFF/</a>”</p>
+<p>After downloading tiff’s from this link, I used Arc Gis Pro to stitch together the multiple files into a single tiff file. To do this, I used the “Mosaic To New Raster” geoprocessing tool.</p>
+<p><img src="images/MosaicToNewRaster.jpg" style="margin-bottom: 1em;" width="400" /></p>
+<p>Once the new raster is created, I used the “Raster Functions” in Arc to perform a Fill on the raster. This step shouldn’t be overlooked. Using a fill value that is too large will cross drainage boundaries and can lead to catchment areas much larger than reality. When performing this step I will do multiple trials to determine what seems to match reality.</p>
+<p><img src="images/Fill.jpg" style="margin-bottom: 1em;" width="400" /></p>
+<p>With the sinks of the raster now filled, the next step is to perform a “Flow Direction” raster function. I don’t force the cells to flow outward and I keep the Flow Direction Type as D8.</p>
+<p><img src="images/FlowDirection.jpg" style="margin-bottom: 1em;" width="400" /></p>
+<p>Now I use the geoprocessing tool “Create Feature Class” to create an empty feature class named “PourPoint”. In the ribbon of ArcGisPro, I move to the Edit tab and with the PourPoint feature class selected in the Contents, select create from the ribbon options and choose multipoint and drop points at the outlet location you want to model.</p>
+<p><img src="images/PourPoint.jpg" style="margin-bottom: 1em;" width="400" /></p>
+<p>Lastly, run the “Watershed” geoporcessing tool with the Flow Direction and pour point layers from earlier and specifu the file path of the output watershed raster.</p>
+<p><img src="images/Watershed.jpg" style="margin-bottom: 1em;" width="400" /></p>
+<p>With the defined basin it is important to obtain the area. To do this, open the attribute table and the ribbon will change with the added tab of Table. Go to this tab and add a field. Name it something descriptive like Area_acres, set the Data Type to Double and the Number Format to Numeric. Go back to the attribute table and right-click the new column of Area_acres and choose calculate geometry, for the property choose area (geodesic) and the Area Unit of US Survey Acres and the correct coordinate system.</p>
+<p><img src="images/Calculate_Geometry.jpg" style="margin-bottom: 1em;" width="400" /></p>
+</div>
+<div id="step-2-determine-2-year-24-hour-peak-flow" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Step 2: Determine 2-year 24-hour Peak Flow<a href="fish-passage-culvert-analysis.html#step-2-determine-2-year-24-hour-peak-flow" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are multiple ways to determine this flow, this example will follow the USGS Regression method, but it can also be acheived by using the NRCS TR-55 method.</p>
+<p>To obtain the 2-year 24-hour flow, the data input include the drainage area and the mean annual precipitation from 1971-2000 PRISM data in inches. I was able to find rasters for every month and then performed a zonal statistics with the boundary of my basin and create a mean annual precipitation estimate with these. Link to rasters “<a href="https://catalog.snap.uaf.edu/geonetwork/srv/api/records/59dc58a7-57b8-447a-8a6f-d17661c41b1e" class="uri">https://catalog.snap.uaf.edu/geonetwork/srv/api/records/59dc58a7-57b8-447a-8a6f-d17661c41b1e</a>”</p>
+<p><img src="images/USGS_Regression.jpg" style="margin-bottom: 1em;" width="400" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": false,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

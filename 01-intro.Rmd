@@ -1,328 +1,39 @@
-# Introduction {#intro}
-
-```{r, echo = FALSE, message = FALSE, warning = FALSE}
-library(tidyr)
-library(ggplot2)
-library(readr)
-library(dplyr)
-```
-# Environmental Setting
-
-## Climate
-
-The Arctic Coastal Plain of Alaska is characterized by a harsh tundra climate, classified as ET in the Köppen system. This region experiences extreme temperature variations, with brutally cold winters where average temperatures often plummet below -15°F, and brief, cool summers barely reaching 50°F in July. The average annual temperature ranges from 8 to 14°F. The average freeze-free period is fewer than 5 days to 20 days. Freezing temperatures can occur in any month.
-
-```{r, fig.cap = "This is NRCS Snotel data from https://wcc.sc.egov.usda.gov/nwcc/site?sitenum=1177", echo = FALSE, warning=FALSE, message=FALSE}
-
-library(plotly)
-library(tidyr)
-library(ggplot2)
-library(readr)
-library(dplyr)
-library(tidyverse)
-library(lubridate)
-
-df1 <- read_delim("_book/dailyAvgTemp.csv", delim = "|")
-
-data <- df1
-
-data_long <- data %>%
-  pivot_longer(cols = -c(`Water Year`, Day),
-               names_to = "Month",
-               values_to = "Temperature")
-
-month_order <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
-
-data_long <- data_long %>%
-  mutate(
-    Month = factor(Month, levels = month_order, ordered = TRUE),
-    Date = as.Date(paste("2000", Month, Day, sep = "-"), format = "%Y-%b-%d"),
-    `Water Year` = as.factor(`Water Year`),
-    hover_text = paste("Water Year:", `Water Year`, "<br>",
-                       "Month:", Month, "<br>",
-                       "Day:", Day, "<br>",
-                       "Temperature:", round(Temperature, 1), "°F")
-  ) %>%
-  arrange(Month, Day)
-
-# Calculate the average temperature for each day of the year
-avg_temp <- data_long %>%
-  group_by(Month, Day) %>%
-  summarise(AvgTemperature = mean(Temperature, na.rm = TRUE), .groups = 'drop') %>%
-  mutate(
-    Date = as.Date(paste("2000", Month, Day, sep = "-"), format = "%Y-%b-%d"),
-    hover_text = paste("Average Temperature", "<br>",
-                       "Month:", Month, "<br>",
-                       "Day:", Day, "<br>",
-                       "Temperature:", round(AvgTemperature, 1), "°F")
-  )
-
-# Create the combined line graph
-p <- ggplot() +
-  # Individual year lines
-  geom_line(data = data_long, 
-            aes(x = Date, y = Temperature, color = `Water Year`, group = `Water Year`, text = hover_text), 
-            alpha = 0.5) +
-  # Average temperature line
-  geom_line(data = avg_temp, 
-            aes(x = Date, y = AvgTemperature),
-            color = "black", size = 1.2) +
-  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
-  scale_color_viridis_d(option = "plasma") +  # Color-blind friendly palette
-  labs(title = "Average Daily Temperature 2004-2024",
-       x = "Month",
-       y = "Temperature (°F)",
-       color = "Water Year") +
-  theme_minimal() +
-  theme(legend.position = "right",
-        axis.text.x = element_text(angle = 45, hjust = 1))
-
-# Convert to interactive plotly object with custom hover
-p_interactive <- ggplotly(p, tooltip = "text")
-
-# Modify hover template and mode
-for (i in 1:length(p_interactive$x$data)) {
-  p_interactive$x$data[[i]]$hoverinfo <- "text"
-  p_interactive$x$data[[i]]$hoverlabel <- list(bgcolor = "white")
-}
-
-p_interactive <- p_interactive %>% 
-  layout(hovermode = "closest")
-
-# Display the plot
-p_interactive
-
-```
-
-Despite its frigid nature, the arctic coastal plain receives surprisingly little precipitation, typically ranging from 6-10 inches annually. Most of this falls as snow, blanketing the landscape for much of the year. The average annual snowfall is about 50 to 100 centimeters. The low precipitation, coupled with minimal evaporation rates due to the cold, creates a unique hydrologic balance that doesn't quite fit the traditional definition of a desert.
-
-```{r,fig.cap = "This is NRCS Snotel data from https://wcc.sc.egov.usda.gov/nwcc/site?sitenum=1177", echo = FALSE, warning=FALSE, message=FALSE}
-
-library(tidyr)
-library(ggplot2)
-library(readr)
-library(dplyr)
-library(tidyverse)
-library(lubridate)
-library(viridis)
-library(plotly)
-
-df1 <- read_delim("_book/dailyPrecip.csv", delim = "|")
-
-data <- df1 %>%
-  rename(Year = "Water Year")
-
-data_long <- data %>%
-  pivot_longer(cols = -c(Year, Day),
-               names_to = "Month",
-               values_to = "Precip")
-
-data_long <- data_long %>%
-  mutate(
-    MonthNum = match(Month, month.abb),
-    Date = make_date(Year, MonthNum, Day),
-    MonthNum = NULL
-  ) %>%
-  mutate(Date = ymd(Date))
-
-# Create a function to reorder months from Oct to Sep
-reorder_month <- function(x) {
-  factor(x, levels = c("Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"))
-}
-
-# Prepare the data for plotting
-data_plot <- data_long %>%
-  mutate(
-    WaterYear = ifelse(month(Date) >= 10, Year, Year - 1),
-    Month = reorder_month(Month)
-  ) %>%
-  filter(Day == days_in_month(Date)) %>%
-  arrange(WaterYear, Month)
-
-# Calculate average cumulative precipitation
-avg_precip <- data_plot %>%
-  group_by(Month) %>%
-  summarize(AvgPrecip = mean(Precip, na.rm = TRUE))
-  
-data_plot$WaterYear <- as.factor(data_plot$WaterYear)
-
-# Create the plot
-p <- ggplot() +
-  geom_line(data = data_plot, aes(x = Month, y = Precip, group = WaterYear, color = WaterYear), 
-            linewidth = .5) +
-  geom_line(data = avg_precip, aes(x = Month, y = AvgPrecip, group = 1), 
-            linewidth = 1.5, color = "black") +
-  geom_point(data = avg_precip, aes(x = Month, y = AvgPrecip), 
-             size = 1, color = "black") +
-  scale_x_discrete(limits = levels(reorder_month(avg_precip$Month))) +
-  scale_color_viridis(discrete = TRUE, option = "plasma", name = "Water Year") +
-  labs(
-    title = "Cumulative Precipitation of Water Years 2004-2024",
-    x = "Month",
-    y = "Cumulative Precipitation (Inches)"
-  ) +
-  theme_minimal() +
-  theme(
-   legend.position = "right",
-    axis.text.x = element_text(angle = 45, hjust = 1),
-    panel.grid.minor = element_blank(),
-    legend.key = element_rect(fill = "white", colour = NA),
-    legend.key.size = unit(0.8, "cm")
-  )
-
-plotly_plot <- ggplotly(p)
-
-plotly_plot
-
-```
-
-## Growing Season
-One of the most striking features of this climate is the dramatic swing in daylight hours throughout the year. Summers bring the phenomenon of the midnight sun, with 24 hours of continuous daylight, while winters plunge the region into weeks of polar night. This extreme light regime profoundly impacts biological rhythms and human activities alike. The coastal plain is also known for its windy conditions, with strong easterly winds being common. These winds, combined with the already frigid temperatures, can create dangerously low wind chill factors.
-
-The growing season in the Arctic Coastal Plain is exceptionally brief, usually lasting only 50-60 days. This short window of relatively warmer temperatures and thawed ground surface supports a unique but fragile tundra ecosystem. Coastal areas are further influenced by sea ice, which is typically present for 8-9 months of the year, affecting local weather patterns and wildlife migrations.
-
-```{r, fig.cap = "This is NRCS SNOTEL data from https://wcc.sc.egov.usda.gov/nwcc/view " , echo = FALSE, warning=FALSE, message=FALSE}
-library(tidyverse)
-library(lubridate)
-library(plotly)
-
-# Read the CSV file
-solar_data <- read_delim("_book/Solar_Data.txt", 
-                         delim = "\t",
-                         col_names = c("Date", "SR"),
-                         col_types = cols(Date = col_character(), SR = col_double()))
-
-# Process data and remove negative values
-solar_data <- solar_data %>%
-  mutate(Date = mdy(Date),
-         Year = year(Date),
-         DayOfYear = yday(Date)) %>%
-  filter(SR >= 0)  # Remove negative SR values
-
-# Calculate average SR for each day of the year
-average_data <- solar_data %>%
-  group_by(DayOfYear) %>%
-  summarize(AvgSR = mean(SR, na.rm = TRUE)) %>%
-  mutate(Year = "Average")
-
-# Create the plot
-p1 <- ggplot() +
-  geom_line(data = solar_data, aes(x = DayOfYear, y = SR, color = factor(Year), group = Year), alpha = 0.7) +
-  geom_line(data = average_data, aes(x = DayOfYear, y = AvgSR, group = 1), color = "black", size = 1.2) +
-  scale_x_continuous(breaks = yday(as.Date(paste0("2000-", 1:12, "-01"))),
-                     labels = month.abb,
-                     limits = c(1, 366)) +
-  scale_color_viridis_d() +
-  labs(title = "Daily Solar Radiation 2011-2024 with Average",
-       x = "Month",
-       y = "Solar Radiation (Watt)",
-       color = "Year") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1),
-        legend.position = "bottom")
-
-# Convert to interactive plotly plot
-plotly_plot <- ggplotly(p1)
-
-# Display the plot
-plotly_plot
-```
-
-Underlying this harsh surface climate is a layer of continuous permafrost, a defining characteristic of the region. The active layer, which thaws seasonally, is typically shallow, extending only 30-50 cm (12-20 inches) deep. This frozen ground significantly influences the area's ecology and presents unique challenges for construction and resource extraction.
-
-## Geomorphology
-
-The Arctic Coastal Plain is characterized by extremely low relief, with elevations ranging from approximately 4 meters to 94 meters and a mean elevation of 33 meters above sea level. This remarkably flat terrain facilitates the development of several distinctive periglacial and aeolian landforms:
-
-```{r, fig.cap = "This is IFSAR data from https://elevation.alaska.gov/ " , echo = FALSE, warning=FALSE, message=FALSE}
-
-library(ggplot2)
-library(tidyr)
-library(dplyr)
-library(plotly)
-
-# Create the data frame
-data <- data.frame(
-  Label = c("4.68-7.48", "7.48-10.28", "10.28-13.08", "13.08-15.88", "15.88-18.68", 
-            "18.68-21.48", "21.48-24.28", "24.28-27.08", "27.08-29.88", "29.88-32.68",
-            "32.68-35.48", "35.48-38.28", "38.28-41.08", "41.08-43.88", "43.88-46.68",
-            "46.68-49.48", "49.48-52.28", "52.28-55.08", "55.08-57.88", "57.88-60.68",
-            "60.68-63.48", "63.48-66.28", "66.28-69.08", "69.08-71.88", "71.88-74.67",
-            "74.67-77.47", "77.47-80.27", "80.27-83.07", "83.07-85.87", "85.87-88.67",
-            "88.67-91.47", "91.47-94.27"),
-  Count = c(349170, 1094535, 1309892, 2263142, 3097026, 4285123, 7421257, 8894325,
-            9168480, 9663489, 8460041, 7194482, 5050500, 4227242, 3466091, 3207795,
-            2481361, 1641636, 1191998, 752523, 543485, 457052, 335404, 434094,
-            201831, 158215, 84838, 57487, 59461, 48412, 14911, 5396)
-)
-
-# Extract middle values of elevation ranges for x-axis
-data$mid_elevation <- sapply(strsplit(as.character(data$Label), "-"), function(x) {
-  mean(as.numeric(x))
-})
-
-# Calculate simple mean
-mean_elevation <- 33
-
-# Create the histogram
-p4 <- ggplot(data, aes(x = mid_elevation, y = Count)) +
-  geom_bar(stat = "identity", fill = "steelblue", alpha = 0.7) +
-  geom_vline(aes(xintercept = mean_elevation), 
-             color = "red", linetype = "dashed", size = 1) +
-  labs(title = "Elevation Distribution of the Arctic Coastal Plain",
-       x = "Elevation (meters)",
-       y = "Count",
-       caption = paste("Mean elevation:", round(mean_elevation, 2), "meters")) +
-  theme_minimal() +
-  theme(
-    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
-    axis.title = element_text(size = 12),
-    axis.text = element_text(size = 10),
-    panel.grid.minor = element_blank()
-  ) +
-  scale_y_continuous(labels = scales::comma) +
-  scale_x_continuous(breaks = seq(0, 95, by = 10))
-
-plotly_plot <- ggplotly(p4)
-
-plotly_plot
-
-```
-
-
-Longitudinal Dunes:
-
-Ancient sand dune systems oriented parallel to prevailing wind directions
-Formed during past climatic conditions when the region was less vegetated
-Now mostly stabilized by tundra vegetation but still influence modern topography
-
-Oriented Lakes (Thermokarst Lakes):
-
-Distinctive oval-shaped lakes aligned perpendicular to prevailing summer winds
-Formation controlled by differential erosion and thaw along lake margins
-Typically 2-4 meters deep with long axes oriented 10-15 degrees west of true north
-Result from permafrost thaw and wind-driven circulation patterns
-
-Highly Sinuous River Channels:
-
-Extremely meandering channels due to the very low gradient coastal plain
-Channels often confined by ice-rich permafrost banks
-Seasonal flow regimes heavily influenced by spring breakup events
-
-Ice Wedge Polygons:
-
-Extensive polygonal ground patterns formed by thermal contraction cracking
-Create distinctive micro-topography across the plain
-Range from low-centered to high-centered depending on degradation state
-Typically 10-30 meters in diameter
-
-Beaded Streams:
-
-Distinctive "string of beads" appearance from connected pools
-Formed where channels intersect ice wedges
-Pools typically 2-3 meters deep with connecting channels
-Important habitat for fish and waterbirds
-
-This landscape represents a complex interaction between periglacial, fluvial, and aeolian processes operating on extremely ice-rich permafrost terrain. The low relief makes the region particularly sensitive to climate change, with thermokarst processes actively modifying the surface morphology.
-Landscape/Landforms: Insert landscape diagram of area
+# Fish Passage Culvert Analysis
 
+As a first order analysis to determine if an existing culvert is sufficient for fish passage this is the workflow that I have performed.
+
+## Step 1 Define Drainage Basin
+
+For this project I used the 2019 USGS 3DEP MatSu Borough 1-meter Lidar data set. This data can be downloaded from "https://prd-tnm.s3.amazonaws.com/index.html?prefix=StagedProducts/Elevation/OPR/Projects/AK_MatSuBorough_2019_B19/AK_MatSuBorough_B1_2019/TIFF/"
+
+After downloading tiff's from this link, I used Arc Gis Pro to stitch together the multiple files into a single tiff file. To do this, I used the "Mosaic To New Raster" geoprocessing tool. 
+
+![](images/MosaicToNewRaster.jpg){width=400px style="margin-bottom: 1em;"}
+
+Once the new raster is created, I used the "Raster Functions" in Arc to perform a Fill on the raster. This step shouldn't be overlooked. Using a fill value that is too large will cross drainage boundaries and can lead to catchment areas much larger than reality. When performing this step I will do multiple trials to determine what seems to match reality.
+
+![](images/Fill.jpg){width=400px style="margin-bottom: 1em;"}
+
+With the sinks of the raster now filled, the next step is to perform a "Flow Direction" raster function. I don't force the cells to flow outward and I keep the Flow Direction Type as D8.
+
+![](images/FlowDirection.jpg){width=400px style="margin-bottom: 1em;"}
+
+Now I use the geoprocessing tool "Create Feature Class" to create an empty feature class named "PourPoint". In the ribbon of ArcGisPro, I move to the Edit tab and with the PourPoint feature class selected in the Contents, select create from the ribbon options and choose multipoint and drop points at the outlet location you want to model.
+
+![](images/PourPoint.jpg){width=400px style="margin-bottom: 1em;"}
+
+Lastly, run the "Watershed" geoporcessing tool with the Flow Direction and pour point layers from earlier and specifu the file path of the output watershed raster.
+
+![](images/Watershed.jpg){width=400px style="margin-bottom: 1em;"}
+
+With the defined basin it is important to obtain the area. To do this, open the attribute table and the ribbon will change with the added tab of Table. Go to this tab and add a field. Name it something descriptive like Area_acres, set the Data Type to Double and the Number Format to Numeric. Go back to the attribute table and right-click the new column of Area_acres and choose calculate geometry, for the property choose area (geodesic) and the Area Unit of US Survey Acres and the correct coordinate system.
+
+![](images/Calculate_Geometry.jpg){width=400px style="margin-bottom: 1em;"}
+
+## Step 2: Determine 2-year 24-hour Peak Flow
+
+There are multiple ways to determine this flow, this example will follow the USGS Regression method, but it can also be acheived by using the NRCS TR-55 method.
+
+To obtain the 2-year 24-hour flow, the data input include the drainage area and the mean annual precipitation from 1971-2000 PRISM data in inches. I was able to find rasters for every month and then performed a zonal statistics with the boundary of my basin and create a mean annual precipitation estimate with these. Link to rasters "https://catalog.snap.uaf.edu/geonetwork/srv/api/records/59dc58a7-57b8-447a-8a6f-d17661c41b1e"
+
+![](images/USGS_Regression.jpg){width=400px style="margin-bottom: 1em;"}
